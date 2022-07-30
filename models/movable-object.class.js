@@ -6,10 +6,11 @@ class MovableObject {
     img;
     imageCache = {};
     currentImage = 0;
-    speed = 0.15;
+    speed;
     otherDirection = false;
     speedY = 0;
     acceleration = 2;
+    energy = 100;
 
     applyGravity() {
         setInterval(() => {
@@ -57,11 +58,20 @@ class MovableObject {
     }
 
     drawFrame(ctx) {
-        ctx.beginPath();
-        ctx.lineWidth = '3';
-        ctx.strokeStyle = 'blue';
-        ctx.rect(this.x, this.y, this.width, this.height);
-        ctx.stroke();
+        if (this instanceof Character || this instanceof Chicken || this instanceof Endboss) {
+            ctx.beginPath();
+            ctx.lineWidth = '3';
+            ctx.strokeStyle = 'blue';
+            ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.stroke();
+        }
+    }
+
+    isColliding(mo) {
+        return this.x + this.width > mo.x &&
+            this.y + this.height > mo.y &&
+            this.x < mo.x &&
+            this.y < mo.y + mo.height;
     }
 
     moveRight() {
@@ -69,7 +79,7 @@ class MovableObject {
     }
 
     moveLeft() {
-        this.x -= this.speed; 
+        this.x -= this.speed;
     }
 
     jump() {

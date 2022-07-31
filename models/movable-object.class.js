@@ -3,7 +3,7 @@ class MovableObject extends DrawableObject {
     otherDirection = false;
     speedY = 0;
     acceleration = 2;
-    energy = 100;
+    health = 100;
     lastHit = 0;
 
     applyGravity() {
@@ -26,16 +26,6 @@ class MovableObject extends DrawableObject {
         this.currentImage++;
     }
 
-    drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Chicken || this instanceof Endboss) {
-            ctx.beginPath();
-            ctx.lineWidth = '3';
-            ctx.strokeStyle = 'blue';
-            ctx.rect(this.x, this.y, this.width, this.height);
-            ctx.stroke();
-        }
-    }
-
     isColliding(mo) {
         return this.x + this.width > mo.x &&
             this.y + this.height > mo.y &&
@@ -44,12 +34,13 @@ class MovableObject extends DrawableObject {
     }
 
     hit() {
-        this.energy -= 5;
-        if (this.energy < 0) {
-            this.energy = 0;
+        this.health -= 20;
+        if (this.health < 0) {
+            this.health = 0;
         } else {
             this.lastHit = new Date().getTime();
         }
+        console.log(this.health)
     }
 
     isHurt() {
@@ -59,7 +50,7 @@ class MovableObject extends DrawableObject {
     }
 
     isDead() {
-        return this.energy == 0;
+        return this.health == 0;
     }
 
     moveRight() {

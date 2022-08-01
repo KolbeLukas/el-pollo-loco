@@ -1,7 +1,3 @@
-const coin = 'img/8_coin/coin_2.png';
-const bottle_left = 'img/6_salsa_bottle/1_salsa_bottle_on_ground.png';
-const bottle_right = 'img/6_salsa_bottle/2_salsa_bottle_on_ground.png';
-
 const level_1 = new Level(
     [
         // new Chicken(300),
@@ -37,8 +33,11 @@ const level_1 = new Level(
         new BackgroundObject('img/5_background/layers/1_first_layer/2.png', 719 * 3)
     ],
     [
-        new CollectableObject(100, 100, coin),
-        new CollectableObject(200, 200, coin),
-        new CollectableObject(200, 350, bottle_right),
-        new CollectableObject(400, 350, bottle_left)
-    ]);
+        new Coin(100, 100),
+        new Coin(200, 200),
+    ],
+    [
+        new Bottle(400, 350),
+        new Bottle(500, 350)
+    ]
+    );

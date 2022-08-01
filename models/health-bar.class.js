@@ -1,4 +1,4 @@
-class StatusBar extends DrawableObject {
+class HealthBar extends DrawableObject {
     width = 225.948;
     height = 60;
     IMAGES_HEALTH = [

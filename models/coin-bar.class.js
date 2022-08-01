@@ -1,6 +1,6 @@
 class CoinBar extends DrawableObject {
-    width = 225.948;
-    height = 60;
+    width = 188.29;
+    height = 50;
     IMAGES_COINCOUNT = [
         'img/7_statusbars/1_statusbar/1_statusbar_coin/orange/0.png',
         'img/7_statusbars/1_statusbar/1_statusbar_coin/orange/20.png',

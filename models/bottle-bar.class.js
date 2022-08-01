@@ -1,6 +1,6 @@
 class BottleBar extends DrawableObject {
-    width = 225.948;
-    height = 60;
+    width = 188.29;
+    height = 50;
     IMAGES_BOTTLECOUNT = [
         'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/0.png',
         'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/20.png',
@@ -15,7 +15,7 @@ class BottleBar extends DrawableObject {
         super();
         this.loadImages(this.IMAGES_BOTTLECOUNT);
         this.x = 5;
-        this.y = 90;
+        this.y = 80;
         this.setPercentage(0);
     }
 

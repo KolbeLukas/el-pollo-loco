@@ -26,8 +26,8 @@ class World {
         setInterval(() => {
             this.checkEnemyCollisions();
             this.checkThrowObjects();
-            this.checkItemCollision();
-        }, 200);
+            this.checkCoinCollision();
+        }, 100);
     }
 
     checkEnemyCollisions() {
@@ -46,12 +46,12 @@ class World {
         }
     }
 
-    checkItemCollision() {
+    checkCoinCollision() {
         this.level.coins.forEach(coin => {
             if (this.character.isColliding(coin)) {
-                this. character.collectCoin();
+                this.character.collectCoin();
                 this.coinBar.setPercentage(this.character.coins);
-                console.log('coin', this.character.coins)
+                console.log(coin)
             }
         })
     }

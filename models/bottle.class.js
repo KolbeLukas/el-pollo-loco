@@ -6,7 +6,7 @@ class Bottle extends MovableObject {
 
     constructor(x, y) {
         super().loadImage(this.IMAGES_BOTTLE[this.number()]);
-        this.x = x;
+        this.x = x + Math.random() * 400;
         this.y = y;
         this.height = 100;
         this.width = 100;

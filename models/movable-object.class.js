@@ -3,8 +3,9 @@ class MovableObject extends DrawableObject {
     otherDirection = false;
     speedY = 0;
     acceleration = 2;
-    health = 100;
     lastHit = 0;
+    health;
+    coins;
 
     applyGravity() {
         setInterval(() => {
@@ -35,6 +36,10 @@ class MovableObject extends DrawableObject {
             this.y + this.height > mo.y &&
             this.x < mo.x + mo.width &&
             this.y < mo.y + mo.height;
+    }
+
+    collectCoin() {
+        this.coins += 1;
     }
 
     hit() {

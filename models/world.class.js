@@ -26,6 +26,7 @@ class World {
         setInterval(() => {
             this.checkEnemyCollisions();
             this.checkThrowObjects();
+            this.checkItemCollision();
         }, 200);
     }
 
@@ -33,7 +34,7 @@ class World {
         this.level.enemies.forEach(enemy => {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
-                this.statusBar.setPercentage(this.character.health);
+                this.healthBar.setPercentage(this.character.health);
             }
         });
     }
@@ -45,13 +46,15 @@ class World {
         }
     }
 
-    // checkItemCollision() {
-    //     this.level.coins.forEach(coin => {
-    //         if (this.character.isColliding(coin)) {
-    //             this.
-    //         }
-    //     })
-    // }
+    checkItemCollision() {
+        this.level.coins.forEach(coin => {
+            if (this.character.isColliding(coin)) {
+                this. character.collectCoin();
+                this.coinBar.setPercentage(this.character.coins);
+                console.log('coin', this.character.coins)
+            }
+        })
+    }
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);

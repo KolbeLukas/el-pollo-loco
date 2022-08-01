@@ -4,6 +4,8 @@ class Character extends MovableObject {
     height = 295.05;
     width = 150;
     speed = 4;
+    health = 100;
+    coins = 0;
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
         'img/2_character_pepe/2_walk/W-22.png',
@@ -13,8 +15,6 @@ class Character extends MovableObject {
         'img/2_character_pepe/2_walk/W-26.png'
     ];
     IMAGES_JUMPING = [
-        // 'img/2_character_pepe/3_jump/J-31.png',
-        // 'img/2_character_pepe/3_jump/J-32.png',
         'img/2_character_pepe/3_jump/J-33.png',
         'img/2_character_pepe/3_jump/J-34.png',
         'img/2_character_pepe/3_jump/J-35.png',

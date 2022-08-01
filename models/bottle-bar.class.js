@@ -1,27 +1,27 @@
-class CoinBar extends DrawableObject {
+class BottleBar extends DrawableObject {
     width = 225.948;
     height = 60;
-    IMAGES_COINCOUNT = [
-        'img/7_statusbars/1_statusbar/1_statusbar_coin/orange/0.png',
-        'img/7_statusbars/1_statusbar/1_statusbar_coin/orange/20.png',
-        'img/7_statusbars/1_statusbar/1_statusbar_coin/orange/40.png',
-        'img/7_statusbars/1_statusbar/1_statusbar_coin/orange/60.png',
-        'img/7_statusbars/1_statusbar/1_statusbar_coin/orange/80.png',
-        'img/7_statusbars/1_statusbar/1_statusbar_coin/orange/100.png'
+    IMAGES_BOTTLECOUNT = [
+        'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/0.png',
+        'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/20.png',
+        'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/40.png',
+        'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/60.png',
+        'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/80.png',
+        'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/100.png'
     ];
     amount = 0;
 
     constructor() {
         super();
-        this.loadImages(this.IMAGES_COINCOUNT);
+        this.loadImages(this.IMAGES_BOTTLECOUNT);
         this.x = 5;
-        this.y = 40;
+        this.y = 90;
         this.setPercentage(0);
     }
 
     setPercentage(amount) {
         this.amount = amount;
-        let path = this.IMAGES_COINCOUNT[this.resolveImageIndex()];
+        let path = this.IMAGES_BOTTLECOUNT[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
 

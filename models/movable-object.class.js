@@ -40,6 +40,10 @@ class MovableObject extends DrawableObject {
         this.coins += 1;
     }
 
+    collectBottle() {
+        this.bottles += 1;
+    }
+
     hit() {
         this.health -= 1;
         if (this.health < 0) {

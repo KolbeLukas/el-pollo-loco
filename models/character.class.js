@@ -42,6 +42,7 @@ class Character extends MovableObject {
     jump_sound = new Audio('audio/jump.wav');
     no_bottle_sound = new Audio('audio/nope.wav');
     throwing_sound = new Audio('audio/throwing.wav');
+    getting_hit_sound = new Audio('audio/hit.wav');
 
     constructor() {
         super().loadImage('img/2_character_pepe/2_walk/nW-21.png');

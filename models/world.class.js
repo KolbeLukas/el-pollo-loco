@@ -35,11 +35,12 @@ class World {
     checkEnemyCollisions() {
         this.level.enemies.forEach(enemy => {
             if (this.character.isColliding(enemy) && this.character.isFalling() && enemy instanceof Chicken) {
-                console.log('hit top');
-                this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1)
+                this.level.enemies[this.level.enemies.indexOf(enemy)].death_sound.play();
+                this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1);
             } else if (this.character.isColliding(enemy)) {
+                this.character.getting_hit_sound.play();
                 this.character.hit();
-                this.healthBar.setPercentage(this.character.health);
+                this.healthBar.setPercentage(this.character.health); 
             }  
         });
     }

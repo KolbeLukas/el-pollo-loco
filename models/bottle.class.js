@@ -11,6 +11,7 @@ class Bottle extends MovableObject {
         this.height = 54.192;
         this.width = 30;
     }
+    
     number() {
         return Math.round(Math.random());
     }

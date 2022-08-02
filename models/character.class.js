@@ -1,28 +1,27 @@
 class Character extends MovableObject {
     x = 80;
-    y = 155;
-    height = 295.05;
+    y = 250;
+    height = 199.17;
     width = 150;
     speed = 4;
     health = 100;
     coins = 0;
     bottles = 0;
     IMAGES_WALKING = [
-        'img/2_character_pepe/2_walk/W-21.png',
-        'img/2_character_pepe/2_walk/W-22.png',
-        'img/2_character_pepe/2_walk/W-23.png',
-        'img/2_character_pepe/2_walk/W-24.png',
-        'img/2_character_pepe/2_walk/W-25.png',
-        'img/2_character_pepe/2_walk/W-26.png'
+        'img/2_character_pepe/2_walk/nW-21.png',
+        'img/2_character_pepe/2_walk/nW-22.png',
+        'img/2_character_pepe/2_walk/nW-23.png',
+        'img/2_character_pepe/2_walk/nW-24.png',
+        'img/2_character_pepe/2_walk/nW-25.png',
+        'img/2_character_pepe/2_walk/nW-26.png'
     ];
     IMAGES_JUMPING = [
-        'img/2_character_pepe/3_jump/J-33.png',
-        'img/2_character_pepe/3_jump/J-34.png',
-        'img/2_character_pepe/3_jump/J-35.png',
-        'img/2_character_pepe/3_jump/J-36.png',
-        'img/2_character_pepe/3_jump/J-37.png',
-        'img/2_character_pepe/3_jump/J-38.png',
-        'img/2_character_pepe/3_jump/J-39.png'
+        'img/2_character_pepe/3_jump/nJ-33.png',
+        'img/2_character_pepe/3_jump/nJ-34.png',
+        'img/2_character_pepe/3_jump/nJ-35.png',
+        'img/2_character_pepe/3_jump/nJ-36.png',
+        'img/2_character_pepe/3_jump/nJ-37.png',
+        'img/2_character_pepe/3_jump/nJ-38.png'
     ];
     IMAGES_HURT = [
         'img/2_character_pepe/4_hurt/H-41.png',
@@ -43,7 +42,7 @@ class Character extends MovableObject {
     jump_sound = new Audio('audio/jump.wav');
 
     constructor() {
-        super().loadImage('img/2_character_pepe/2_walk/W-21.png');
+        super().loadImage('img/2_character_pepe/2_walk/nW-21.png');
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_HURT);
@@ -91,6 +90,6 @@ class Character extends MovableObject {
             if (this.isAboveGround()) { 
                 this.playAnimation(this.IMAGES_JUMPING);
             }
-        }, 1000 / 5.9);
+        }, 1000 / 5);
     }
 }

@@ -42,11 +42,14 @@ class World {
     }
 
     checkThrowObjects() {
-        if(this.keyboard.D && this.character.bottles > 0) {
+        if (this.keyboard.D && this.character.bottles > 0) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100)
             this.throwableObjects.push(bottle);
             this.character.bottles--;
             this.bottleBar.setPercentage(this.character.bottles);
+            this. character.throwing_sound.play();
+        } else if (this.keyboard.D && this.character.bottles == 0) {
+            this.character.no_bottle_sound.play();
         }
     }
 

@@ -42,9 +42,11 @@ class World {
     }
 
     checkThrowObjects() {
-        if(this.keyboard.D) {
+        if(this.keyboard.D && this.character.bottles > 0) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100)
             this.throwableObjects.push(bottle);
+            this.character.bottles--;
+            this.bottleBar.setPercentage(this.character.bottles);
         }
     }
 
@@ -73,14 +75,14 @@ class World {
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.clouds);
+        this.addObjectsToMap(this.throwableObjects);
+        this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.coins);
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.healthBar);
         this.addToMap(this.coinBar);
         this.addToMap(this.bottleBar);
         this.ctx.translate(this.camera_x, 0);
-        this.addObjectsToMap(this.throwableObjects);
-        this.addObjectsToMap(this.level.enemies);
-        this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottles);
         this.addToMap(this.character);
         this.ctx.translate(-this.camera_x, 0);

@@ -1,7 +1,7 @@
 class MovableObject extends DrawableObject {
     speed;
     otherDirection = false;
-    speedY = 0;
+    speedY = -32;
     acceleration = 2;
     lastHit = 0;
 
@@ -36,6 +36,11 @@ class MovableObject extends DrawableObject {
             this.y < mo.y + mo.height;
     }
 
+    isFalling() { 
+        return this.speedY > - 32 &&
+            this.speedY < 0;
+    }
+
     collectCoin() {
         this.coins += 1;
     }
@@ -45,7 +50,7 @@ class MovableObject extends DrawableObject {
     }
 
     hit() {
-        this.health -= 1;
+        this.health -= 5;
         if (this.health < 0) {
             this.health = 0;
         } else {

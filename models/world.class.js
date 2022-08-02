@@ -34,10 +34,13 @@ class World {
 
     checkEnemyCollisions() {
         this.level.enemies.forEach(enemy => {
-            if (this.character.isColliding(enemy)) {
+            if (this.character.isColliding(enemy) && this.character.isFalling() && enemy instanceof Chicken) {
+                console.log('hit top');
+                this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1)
+            } else if (this.character.isColliding(enemy)) {
                 this.character.hit();
                 this.healthBar.setPercentage(this.character.health);
-            }
+            }  
         });
     }
 

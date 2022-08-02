@@ -1,9 +1,10 @@
 const level_1 = new Level(
     [
-        // new Chicken(300),
+        new Chicken(300),
         // new Chicken(800),
         // new Chicken(1200),
         new Endboss()
+        
     ],
     [
         new Cloud(0),

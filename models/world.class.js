@@ -9,6 +9,7 @@ class World {
     coinBar = new CoinBar();
     bottleBar = new BottleBar();
     throwableObjects = [];
+    death_enemies = [];
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -35,13 +36,14 @@ class World {
     checkEnemyCollisions() {
         this.level.enemies.forEach(enemy => {
             if (this.character.isColliding(enemy) && this.character.isFalling() && enemy instanceof Chicken) {
-                this.level.enemies[this.level.enemies.indexOf(enemy)].death_sound.play();
+                enemy.death_sound.play();
+                enemy.dead = true;
+                this.death_enemies.push(enemy);
                 this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1);
             } else if (this.character.isColliding(enemy)) {
-                this.character.getting_hit_sound.play();
                 this.character.hit();
                 this.healthBar.setPercentage(this.character.health); 
-            }  
+            }
         });
     }
 
@@ -84,6 +86,9 @@ class World {
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.level.enemies);
+
+        this.addObjectsToMap(this.death_enemies);
+
         this.addObjectsToMap(this.level.coins);
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.healthBar);

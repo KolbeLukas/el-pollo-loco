@@ -5,7 +5,6 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
-    // healthBar = new HealthBar();
     coinBar = new CoinBar();
     bottleBar = new BottleBar();
     throwableObjects = [];
@@ -52,7 +51,7 @@ class World {
             this.throwableObjects.push(bottle);
             this.character.bottles--;
             this.bottleBar.setPercentage(this.character.bottles);
-            this. character.throwing_sound.play();
+            this.character.throwing_sound.play();
         } else if (this.keyboard.D && this.character.bottles == 0) {
             this.character.no_bottle_sound.play();
         }
@@ -62,6 +61,7 @@ class World {
         this.level.coins.forEach(coin => {
             if (this.character.isColliding(coin)) {
                 this.character.collectCoin();
+                coin.collecting_sound.play();
                 this.coinBar.setPercentage(this.character.coins);
                 this.level.coins.splice(this.level.coins.indexOf(coin), 1);
             }
@@ -72,6 +72,7 @@ class World {
         this.level.bottles.forEach(bottle => {
             if (this.character.isColliding(bottle)) {
                 this.character.collectBottle();
+                bottle.collecting_sound.play();
                 this.bottleBar.setPercentage(this.character.bottles);
                 this.level.bottles.splice(this.level.bottles.indexOf(bottle), 1);
             }

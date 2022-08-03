@@ -8,6 +8,7 @@ class World {
     coinBar = new CoinBar();
     bottleBar = new BottleBar();
     throwableObjects = [];
+    last_throw = new Date().getTime();
     death_enemies = [];
 
     constructor(canvas, keyboard) {
@@ -46,14 +47,17 @@ class World {
     }
 
     checkThrowObjects() {
-        if (this.keyboard.D && this.character.bottles > 0) {
+        let new_time = new Date().getTime();
+        if (this.keyboard.D && this.character.bottles > 0 && new_time - this.last_throw > 500) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100)
             this.throwableObjects.push(bottle);
             this.character.bottles--;
             this.bottleBar.setPercentage(this.character.bottles);
             this.character.throwing_sound.play();
-        } else if (this.keyboard.D && this.character.bottles == 0) {
+            this.last_throw = new_time;
+        } else if (this.keyboard.D && this.character.bottles == 0 && new_time - this.last_throw > 1000) {
             this.character.no_bottle_sound.play();
+            this.last_throw = new_time;
         }
     }
 

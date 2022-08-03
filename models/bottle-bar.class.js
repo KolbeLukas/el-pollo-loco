@@ -2,12 +2,12 @@ class BottleBar extends DrawableObject {
     width = 188.29;
     height = 50;
     IMAGES_BOTTLECOUNT = [
-        'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/0.png',
-        'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/20.png',
-        'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/40.png',
-        'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/60.png',
-        'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/80.png',
-        'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/100.png'
+        'img/7_statusbars/1_statusbar/3_statusbar_bottle/0.png',
+        'img/7_statusbars/1_statusbar/3_statusbar_bottle/20.png',
+        'img/7_statusbars/1_statusbar/3_statusbar_bottle/40.png',
+        'img/7_statusbars/1_statusbar/3_statusbar_bottle/60.png',
+        'img/7_statusbars/1_statusbar/3_statusbar_bottle/80.png',
+        'img/7_statusbars/1_statusbar/3_statusbar_bottle/100.png'
     ];
     amount = 0;
 

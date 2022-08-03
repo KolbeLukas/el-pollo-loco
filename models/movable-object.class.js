@@ -50,24 +50,35 @@ class MovableObject extends DrawableObject {
     }
 
     hit() {
-        let time = new Date().getTime();  //1000
-        if (time - this.lastHit > 1000) { //1000-0 true
+        let time = new Date().getTime();
+        if (time - this.lastHit > 1000) {
             this.health -= 20;
             this.healthBar.setPercentage(this.health);
             if (this.health < 0) {
                 this.health = 0;
             } else {
-                this.lastHit = time; //1000
+                this.lastHit = time;
             }
         }
     }
 
+    hitBoss() {
+        console.log('hit boss')
+        this.health -= 1;
+        console.log(this.health)
+        // this.healthBar.setPercentage(this.health);
+        // if (this.health < 0) {
+        //     this.health = 0;
+        // } else {
+        //     this.lastHit = time;
+        // }
+    }
+
     isHurt() {
-        let timepassed = new Date().getTime() - this.lastHit; //1000-1000
+        let timepassed = new Date().getTime() - this.lastHit;
         timepassed = timepassed / 1000; 
         return timepassed < 1;
     }
-
 
     isDead() {
         return this.health == 0;

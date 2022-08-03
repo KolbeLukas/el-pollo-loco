@@ -1,11 +1,15 @@
 const level_1 = new Level(
     [
+        new Endboss(),
         // new Chicken(300),
         // new Chicken(800),
-        // new Chicken(1200),
-        new Endboss()
+        // new Chicken(1200)
+        
         
     ],
+    // [
+    //     new Endboss()
+    // ],
     [
         new Cloud(0),
         new Cloud(600),
@@ -45,6 +49,9 @@ const level_1 = new Level(
     ],
     [
         new Bottle(400),
-        new Bottle(500)
+        new Bottle(500),
+        new Bottle(600),
+        new Bottle(700),
+        new Bottle(800)
     ]
     );

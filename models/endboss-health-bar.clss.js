@@ -1,15 +1,15 @@
-class HealthBar extends DrawableObject {
-    width = 225.948;
-    height = 60;
-    x = 5;
+class EndbossHealthBar extends DrawableObject {
+    width = 263.606;
+    height = 70;
+    x = 445;
     y = -10;
     IMAGES_HEALTH = [
-        'img/7_statusbars/1_statusbar/2_statusbar_health/0.png',
-        'img/7_statusbars/1_statusbar/2_statusbar_health/20.png',
-        'img/7_statusbars/1_statusbar/2_statusbar_health/40.png',
-        'img/7_statusbars/1_statusbar/2_statusbar_health/60.png',
-        'img/7_statusbars/1_statusbar/2_statusbar_health/80.png',
-        'img/7_statusbars/1_statusbar/2_statusbar_health/100.png'
+        'img/7_statusbars/2_statusbar_endboss/orange-0.png',
+        'img/7_statusbars/2_statusbar_endboss/orange-20.png',
+        'img/7_statusbars/2_statusbar_endboss/orange-40.png',
+        'img/7_statusbars/2_statusbar_endboss/orange-60.png',
+        'img/7_statusbars/2_statusbar_endboss/orange-80.png',
+        'img/7_statusbars/2_statusbar_endboss/orange-100.png'
     ];
     percentage = 100;
 

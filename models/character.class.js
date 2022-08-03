@@ -91,7 +91,6 @@ class Character extends MovableObject {
 
         setInterval(() => {
             if (this.isHurt()) {
-                console.log('hurt')
                 this.getting_hit_sound.play();
                 this.playAnimation(this.IMAGES_HURT);
             }

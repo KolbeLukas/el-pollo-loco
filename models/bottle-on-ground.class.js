@@ -1,7 +1,7 @@
-class Bottle extends MovableObject {
+class BottleOnGround extends MovableObject {
     IMAGES_BOTTLE = [
-        'img/6_salsa_bottle/3_salsa_bottle_on_ground.png',
-        'img/6_salsa_bottle/4_salsa_bottle_on_ground.png'
+        'img/6_salsa_bottle/1_salsa_bottle_on_ground.png',
+        'img/6_salsa_bottle/2_salsa_bottle_on_ground.png'
     ];
     collecting_sound = new Audio('audio/collect-bottle.wav');
 

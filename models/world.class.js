@@ -5,7 +5,7 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
-    healthBar = new HealthBar();
+    // healthBar = new HealthBar();
     coinBar = new CoinBar();
     bottleBar = new BottleBar();
     throwableObjects = [];
@@ -42,7 +42,6 @@ class World {
                 this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1);
             } else if (this.character.isColliding(enemy)) {
                 this.character.hit();
-                this.healthBar.setPercentage(this.character.health); 
             }
         });
     }
@@ -91,7 +90,7 @@ class World {
 
         this.addObjectsToMap(this.level.coins);
         this.ctx.translate(-this.camera_x, 0);
-        this.addToMap(this.healthBar);
+        this.addToMap(this.character.healthBar);
         this.addToMap(this.coinBar);
         this.addToMap(this.bottleBar);
         this.ctx.translate(this.camera_x, 0);

@@ -5,6 +5,7 @@ class Character extends MovableObject {
     width = 150;
     speed = 4;
     health = 100;
+    healthBar = new HealthBar();
     coins = 0;
     bottles = 0;
     IMAGES_WALKING = [
@@ -24,9 +25,9 @@ class Character extends MovableObject {
         'img/2_character_pepe/3_jump/nJ-38.png'
     ];
     IMAGES_HURT = [
-        'img/2_character_pepe/4_hurt/H-41.png',
-        'img/2_character_pepe/4_hurt/H-42.png',
-        'img/2_character_pepe/4_hurt/H-43.png'
+        'img/2_character_pepe/4_hurt/nH-41.png',
+        'img/2_character_pepe/4_hurt/nH-42.png',
+        'img/2_character_pepe/4_hurt/nH-43.png'
     ];
     IMAGES_DEAD = [
         'img/2_character_pepe/5_dead/D-51.png',
@@ -71,7 +72,7 @@ class Character extends MovableObject {
                     this.walking_sound.play();
                 }
             }
-            if(this.world.keyboard.SPACE && !this.isAboveGround()) {
+            if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.currentImage = 0;
                 this.jump();
                 this.jump_sound.play();
@@ -80,18 +81,24 @@ class Character extends MovableObject {
         }, 1000 / 60);
 
         setInterval(() => {
-            if(this.isDead()) {
+            if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-            } else if (this.isHurt()) {
-                this.playAnimation(this.IMAGES_HURT);
-                this.getting_hit_sound.play();
-            } else if (this.world.keyboard.RIGHT && !this.isAboveGround() || this.world.keyboard.LEFT && !this.isAboveGround()) {
-                    this.playAnimation(this.IMAGES_WALKING);
-                }
-            }, 80);
-            
+            } else if (this.world.keyboard.RIGHT && !this.isAboveGround() && !this.isHurt() || this.world.keyboard.LEFT && !this.isAboveGround() && !this.isHurt()) {
+                this.playAnimation(this.IMAGES_WALKING);
+            }
+        }, 80);
+
+
         setInterval(() => {
-            if (this.isAboveGround()) { 
+            if (this.isHurt()) {
+                console.log('hurt')
+                this.getting_hit_sound.play();
+                this.playAnimation(this.IMAGES_HURT);
+            }
+        }, 1000 / 3);
+
+        setInterval(() => {
+            if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
             }
         }, 1000 / 5);

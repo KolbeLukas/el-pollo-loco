@@ -36,7 +36,7 @@ class MovableObject extends DrawableObject {
             this.y < mo.y + mo.height;
     }
 
-    isFalling() { 
+    isFalling() {
         return this.speedY > - 32 &&
             this.speedY < 0;
     }
@@ -50,19 +50,24 @@ class MovableObject extends DrawableObject {
     }
 
     hit() {
-        this.health -= 5;
-        if (this.health < 0) {
-            this.health = 0;
-        } else {
-            this.lastHit = new Date().getTime();
+        let time = new Date().getTime();  //1000
+        if (time - this.lastHit > 1000) { //1000-0 true
+            this.health -= 20;
+            this.healthBar.setPercentage(this.health);
+            if (this.health < 0) {
+                this.health = 0;
+            } else {
+                this.lastHit = time; //1000
+            }
         }
     }
 
     isHurt() {
-        let timepassed = new Date().getTime() - this.lastHit;
-        timepassed = timepassed / 1000;
+        let timepassed = new Date().getTime() - this.lastHit; //1000-1000
+        timepassed = timepassed / 1000; 
         return timepassed < 1;
     }
+
 
     isDead() {
         return this.health == 0;

@@ -33,7 +33,7 @@ class World {
             }
             this.checkCoinCollision();
             this.checkBottleCollision();
-        }, 100);
+        }, 25);
     }
 
     checkEnemyCollisions() {
@@ -117,7 +117,9 @@ class World {
         this.addObjectsToMap(this.level.coins);
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.character.healthBar);
-        this.addToMap(this.level.enemies[0].healthBar);
+        if (this.character.isNear(this.level.enemies[0])) {
+            this.addToMap(this.level.enemies[0].healthBar);
+        }
         this.addToMap(this.coinBar);
         this.addToMap(this.bottleBar);
         this.ctx.translate(this.camera_x, 0);

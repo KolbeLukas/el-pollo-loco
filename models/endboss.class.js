@@ -2,7 +2,7 @@ class Endboss extends MovableObject {
     y = 60;
     height = 406.805;
     width = 350;
-    health = 5;
+    health = 100;
     healthBar = new EndbossHealthBar();
     IMAGES_WALKING = [
         'img/4_enemie_boss_chicken/2_alert/G5.png',

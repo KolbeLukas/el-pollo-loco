@@ -4,6 +4,12 @@ class MovableObject extends DrawableObject {
     speedY = -32;
     acceleration = 2;
     lastHit = 0;
+    offset = {
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0
+    };
 
     applyGravity() {
         setInterval(() => {
@@ -18,7 +24,7 @@ class MovableObject extends DrawableObject {
         if (this instanceof ThrowableObject) {
             return true;
         } else {
-            return this.y < 250;
+            return this.y <150;
         }
     }
 
@@ -28,12 +34,16 @@ class MovableObject extends DrawableObject {
         this.img = this.imageCache[path];
         this.currentImage++;
     }
-
+ 
     isColliding(mo) {
-        return this.x + this.width > mo.x &&
-            this.y + this.height > mo.y &&
-            this.x < mo.x + mo.width &&
-            this.y < mo.y + mo.height;
+        return this.x + this.width - this.offset.right > mo.x &&
+            this.y + this.height - this.offset.bottom > mo.y &&
+            this.x + this.offset.left < mo.x + mo.width &&
+            this.y + this.offset.top < mo.y + mo.height;
+    }
+
+    isNear(mo) {
+        return this.x + this.width + 470 > mo.x;
     }
 
     isFalling() {
@@ -63,20 +73,19 @@ class MovableObject extends DrawableObject {
     }
 
     hitBoss() {
-        console.log('hit boss')
-        this.health -= 1;
+        this.health -= 20;
         console.log(this.health)
-        // this.healthBar.setPercentage(this.health);
-        // if (this.health < 0) {
-        //     this.health = 0;
-        // } else {
-        //     this.lastHit = time;
-        // }
+        this.healthBar.setPercentage(this.health);
+        if (this.health < 0) {
+            this.health = 0;
+        } else {
+            this.lastHit = new Date().getTime();
+        }
     }
 
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit;
-        timepassed = timepassed / 1000; 
+        timepassed = timepassed / 1000;
         return timepassed < 1;
     }
 

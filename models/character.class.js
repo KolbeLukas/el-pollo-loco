@@ -1,28 +1,34 @@
 class Character extends MovableObject {
     x = 80;
-    y = 250;
-    height = 199.17;
+    y = 150;
+    height = 295.05;
     width = 150;
     speed = 4;
     health = 100;
     healthBar = new HealthBar();
     coins = 0;
     bottles = 0;
+    offset = {
+        top: 110,
+        bottom: 10,
+        left: 20,
+        right: 30
+    };
     IMAGES_WALKING = [
-        'img/2_character_pepe/2_walk/nW-21.png',
-        'img/2_character_pepe/2_walk/nW-22.png',
-        'img/2_character_pepe/2_walk/nW-23.png',
-        'img/2_character_pepe/2_walk/nW-24.png',
-        'img/2_character_pepe/2_walk/nW-25.png',
-        'img/2_character_pepe/2_walk/nW-26.png'
+        'img/2_character_pepe/2_walk/W-21.png',
+        'img/2_character_pepe/2_walk/W-22.png',
+        'img/2_character_pepe/2_walk/W-23.png',
+        'img/2_character_pepe/2_walk/W-24.png',
+        'img/2_character_pepe/2_walk/W-25.png',
+        'img/2_character_pepe/2_walk/W-26.png'
     ];
     IMAGES_JUMPING = [
-        'img/2_character_pepe/3_jump/nJ-33.png',
-        'img/2_character_pepe/3_jump/nJ-34.png',
-        'img/2_character_pepe/3_jump/nJ-35.png',
-        'img/2_character_pepe/3_jump/nJ-36.png',
-        'img/2_character_pepe/3_jump/nJ-37.png',
-        'img/2_character_pepe/3_jump/nJ-38.png'
+        'img/2_character_pepe/3_jump/J-33.png',
+        'img/2_character_pepe/3_jump/J-34.png',
+        'img/2_character_pepe/3_jump/J-35.png',
+        'img/2_character_pepe/3_jump/J-36.png',
+        'img/2_character_pepe/3_jump/J-37.png',
+        'img/2_character_pepe/3_jump/J-38.png'
     ];
     IMAGES_HURT = [
         'img/2_character_pepe/4_hurt/nH-41.png',
@@ -46,7 +52,7 @@ class Character extends MovableObject {
     getting_hit_sound = new Audio('audio/hit.wav');
 
     constructor() {
-        super().loadImage('img/2_character_pepe/2_walk/nW-21.png');
+        super().loadImage('img/2_character_pepe/2_walk/W-21.png');
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_HURT);

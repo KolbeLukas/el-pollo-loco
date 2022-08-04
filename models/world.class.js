@@ -70,6 +70,7 @@ class World {
                 if (bottle.isColliding(enemy)) {
                     this.throwableObjects.splice(this.throwableObjects.indexOf(bottle), 1);
                     if (enemy instanceof Chicken) {
+                        console.log('chicken hit')
                         enemy.dead = true;
                         this.death_enemies.push(enemy);
                         this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1);
@@ -145,6 +146,7 @@ class World {
 
         mo.draw(this.ctx);
         mo.drawFrame(this.ctx);
+        mo.drawFrame2(this.ctx);
 
         if (mo.otherDirection) {
             this.flipImageBack(mo);

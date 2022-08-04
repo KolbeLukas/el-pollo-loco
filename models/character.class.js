@@ -31,9 +31,9 @@ class Character extends MovableObject {
         'img/2_character_pepe/3_jump/J-38.png'
     ];
     IMAGES_HURT = [
-        'img/2_character_pepe/4_hurt/nH-41.png',
-        'img/2_character_pepe/4_hurt/nH-42.png',
-        'img/2_character_pepe/4_hurt/nH-43.png'
+        'img/2_character_pepe/4_hurt/H-41.png',
+        'img/2_character_pepe/4_hurt/H-42.png',
+        'img/2_character_pepe/4_hurt/H-43.png'
     ];
     IMAGES_DEAD = [
         'img/2_character_pepe/5_dead/D-51.png',

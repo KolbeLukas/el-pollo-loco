@@ -2,10 +2,10 @@ class ThrowableObject extends MovableObject {
     width = 70;
     height = 70;
     offset = {
-        top: 60,
-        bottom: 60,
-        left: 60,
-        right: 60
+        top: 10, 
+        bottom: 10,
+        left: 10,
+        right: 10
     }
     IMAGES = [
         'img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
@@ -34,6 +34,6 @@ class ThrowableObject extends MovableObject {
     animate() {
         setInterval(() => {
             this.playAnimation(this.IMAGES);
-        }, 1000 / 15);
+        }, 1000 / 25);
     }
 }

@@ -53,8 +53,13 @@ class World {
     checkThrowObjects() {
         let time = new Date().getTime();
         if (this.keyboard.D && this.character.bottles > 0 && time - this.last_throw > 500) {
-            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+            if(!this.character.otherDirection) {
+            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100, 10);
             this.throwableObjects.push(bottle);
+            } else {
+                let bottle = new ThrowableObject(this.character.x, this.character.y + 100, -10);
+                this.throwableObjects.push(bottle);
+            }
             this.character.bottles--;
             this.bottleBar.setPercentage(this.character.bottles);
             this.character.throwing_sound.play();

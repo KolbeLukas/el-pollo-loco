@@ -127,11 +127,12 @@ class World {
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.clouds);
+        this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.splashBottles);
-        this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.death_enemies);
-        this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.bottles);
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.character.healthBar);
         if (this.character.isNear(this.level.enemies[0])) {
@@ -140,7 +141,6 @@ class World {
         this.addToMap(this.coinBar);
         this.addToMap(this.bottleBar);
         this.ctx.translate(this.camera_x, 0);
-        this.addObjectsToMap(this.level.bottles);
         this.addToMap(this.character);
         this.ctx.translate(-this.camera_x, 0);
         let self = this;

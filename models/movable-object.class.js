@@ -74,7 +74,6 @@ class MovableObject extends DrawableObject {
 
     hitBoss() {
         this.health -= 20;
-        console.log(this.health)
         this.healthBar.setPercentage(this.health);
         if (this.health < 0) {
             this.health = 0;

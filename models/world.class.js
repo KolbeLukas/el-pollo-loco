@@ -8,6 +8,7 @@ class World {
     coinBar = new CoinBar();
     bottleBar = new BottleBar();
     throwableObjects = [];
+    splashBottles = [];
     last_throw = new Date().getTime();
     death_enemies = [];
 
@@ -68,9 +69,13 @@ class World {
         this.level.enemies.forEach(enemy => {
             this.throwableObjects.forEach(bottle => {
                 if (bottle.isColliding(enemy)) {
+                    let splash = new BottleSplash(bottle.x, bottle.y);
+                    this.splashBottles.push(splash);
+                    setTimeout(() => {
+                        this.splashBottles = [];
+                    }, 1000 / 2.5);
                     this.throwableObjects.splice(this.throwableObjects.indexOf(bottle), 1);
                     if (enemy instanceof Chicken) {
-                        console.log('chicken hit')
                         enemy.dead = true;
                         this.death_enemies.push(enemy);
                         this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1);
@@ -78,7 +83,12 @@ class World {
                         enemy.hitBoss();
                     }
                 }
-                if (bottle.y > this.canvas.height) {
+                if (bottle.y > this.canvas.height - 100) {
+                    let splash = new BottleSplash(bottle.x, bottle.y);
+                    this.splashBottles.push(splash);
+                    setTimeout(() => {
+                        this.splashBottles = [];
+                    }, 1000 / 2.5);
                     this.throwableObjects.splice(this.throwableObjects.indexOf(bottle), 1);
                 }
             });
@@ -113,6 +123,7 @@ class World {
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.throwableObjects);
+        this.addObjectsToMap(this.splashBottles);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.death_enemies);
         this.addObjectsToMap(this.level.coins);

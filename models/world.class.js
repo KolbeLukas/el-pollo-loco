@@ -11,6 +11,7 @@ class World {
     splashBottles = [];
     last_throw = new Date().getTime();
     death_enemies = [];
+    endboss = this.level.enemies[0];
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -34,6 +35,7 @@ class World {
             }
             this.checkCoinCollision();
             this.checkBottleCollision();
+            this.checkIsNear();
         }, 25);
     }
 
@@ -46,8 +48,21 @@ class World {
                 this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1);
             } else if (this.character.isColliding(enemy)) {
                 this.character.hit();
+                if (enemy == this.endboss) {
+                    this.endboss.attacke = true;
+                }
+            } else {
+                this.endboss.attacke = false;
             }
         });
+    }
+
+    checkIsNear() {
+        if (this.character.isNear(this.endboss, 330)) {
+            this.endboss.isNear = true;
+        } else {
+            this.endboss.isNear = false;
+        }
     }
 
     checkThrowObjects() {
@@ -108,7 +123,7 @@ class World {
                 this.coinBar.setPercentage(this.character.coins);
                 this.level.coins.splice(this.level.coins.indexOf(coin), 1);
             }
-        })
+        });
     }
 
     checkBottleCollision() {
@@ -119,7 +134,7 @@ class World {
                 this.bottleBar.setPercentage(this.character.bottles);
                 this.level.bottles.splice(this.level.bottles.indexOf(bottle), 1);
             }
-        })
+        });
     }
 
     draw() {
@@ -135,8 +150,8 @@ class World {
         this.addObjectsToMap(this.level.bottles);
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.character.healthBar);
-        if (this.character.isNear(this.level.enemies[0])) {
-            this.addToMap(this.level.enemies[0].healthBar);
+        if (this.character.isNear(this.endboss, 470)) {
+            this.addToMap(this.endboss.healthBar);
         }
         this.addToMap(this.coinBar);
         this.addToMap(this.bottleBar);

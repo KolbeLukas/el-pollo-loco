@@ -42,8 +42,8 @@ class MovableObject extends DrawableObject {
             this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
     }
 
-    isNear(mo) {
-        return this.x + this.width + 470 > mo.x;
+    isNear(mo, distance) {
+        return this.x + this.width + distance > mo.x;
     }
 
     isFalling() {

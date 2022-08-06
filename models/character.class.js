@@ -7,7 +7,7 @@ class Character extends MovableObject {
     health = 100;
     healthBar = new HealthBar();
     coins = 0;
-    bottles = 2;
+    bottles = 1;
     offset = {
         top: 110,
         bottom: 10,
@@ -49,7 +49,7 @@ class Character extends MovableObject {
     jump_sound = new Audio('audio/jump.wav');
     no_bottle_sound = new Audio('audio/nope.wav');
     throwing_sound = new Audio('audio/throwing.wav');
-    getting_hit_sound = new Audio('audio/hit.wav');
+    getting_hit_sound = new Audio('audio/character-hit.wav');
 
     constructor() {
         super().loadImage('img/2_character_pepe/2_walk/W-21.png');

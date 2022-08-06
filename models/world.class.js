@@ -42,11 +42,11 @@ class World {
     checkEnemyCollisions() {
         this.level.enemies.forEach(enemy => {
             if (this.character.isColliding(enemy) && this.character.isFalling() && enemy instanceof Chicken) {
-                enemy.death_sound.play();
+                enemy.hit_sound.play();
                 enemy.dead = true;
                 this.death_enemies.push(enemy);
                 this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1);
-            } else if (this.character.isColliding(enemy)) {
+            } else if (this.character.isColliding(enemy) && !this.endboss.isDead()) {
                 this.character.hit();
                 if (enemy == this.endboss) {
                     this.endboss.attacke = true;
@@ -58,19 +58,21 @@ class World {
     }
 
     checkIsNear() {
-        if (this.character.isNear(this.endboss, 330)) {
-            this.endboss.isNear = true;
-        } else {
-            this.endboss.isNear = false;
-        }
+        this.level.enemies.forEach(enemy => {
+            if (this.character.isNear(enemy, 330)) {
+                enemy.isNear = true;
+            } else {
+                enemy.isNear = false;
+            }
+        })
     }
 
     checkThrowObjects() {
         let time = new Date().getTime();
-        if (this.keyboard.D && this.character.bottles > 0 && time - this.last_throw > 500) {
-            if(!this.character.otherDirection) {
-            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100, 10);
-            this.throwableObjects.push(bottle);
+        if (this.keyboard.D && this.character.bottles > 0 && time - this.last_throw > 500 && !this.character.isDead()) {
+            if (!this.character.otherDirection) {
+                let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100, 10);
+                this.throwableObjects.push(bottle);
             } else {
                 let bottle = new ThrowableObject(this.character.x, this.character.y + 100, -10);
                 this.throwableObjects.push(bottle);
@@ -103,16 +105,20 @@ class World {
                         enemy.hitBoss();
                     }
                 }
-                if (bottle.y > this.canvas.height - 100) {
-                    let splash = new BottleSplash(bottle.x, bottle.y);
-                    this.splashBottles.push(splash);
-                    setTimeout(() => {
-                        this.splashBottles = [];
-                    }, 1000 / 2.5);
-                    this.throwableObjects.splice(this.throwableObjects.indexOf(bottle), 1);
-                }
+                this.bottleHitGround(bottle);
             });
         });
+    }
+
+    bottleHitGround(bottle) {
+        if (bottle.y > this.canvas.height - 100) {
+            let splash = new BottleSplash(bottle.x, bottle.y);
+            this.splashBottles.push(splash);
+            setTimeout(() => {
+                this.splashBottles = [];
+            }, 1000 / 2.5);
+            this.throwableObjects.splice(this.throwableObjects.indexOf(bottle), 1);
+        }
     }
 
     checkCoinCollision() {

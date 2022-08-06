@@ -8,8 +8,8 @@ class Endboss extends MovableObject {
     attacke = false;
     offset = {
         top: 80,
-        bottom: 0,
-        left: 15,
+        bottom: 80,
+        left: 35,
         right: 10
     };
     healthBar = new EndbossHealthBar();

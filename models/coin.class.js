@@ -1,4 +1,5 @@
 class Coin extends MovableObject {
+    bar = new CoinBar();
     offset = {
         top: 50,
         bottom: 50,

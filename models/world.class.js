@@ -12,6 +12,7 @@ class World {
     last_throw = new Date().getTime();
     death_enemies = [];
     endboss = this.level.enemies[0];
+    time;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -38,7 +39,8 @@ class World {
             this.checkCoinCollision();
             this.checkBottleCollision();
             this.checkIsNear();
-        }, 25);
+            this.checkActuellTime();
+        }, 1000 / 40);
     }
 
 
@@ -60,12 +62,13 @@ class World {
 
     checkIsNear() {
         this.level.enemies.forEach(enemy => {
-            if (this.character.isNear(enemy, 330, 100) && enemy instanceof Endboss) {
+            if (this.character.isNear(enemy, 435, 80) && enemy instanceof Endboss) {
                 enemy.isNear = true;
-            } else if (this.character.isNear(enemy, 150, 100) && enemy instanceof Chicken) {
+            } else if (this.character.isNear(enemy, 150, 80) && enemy instanceof Chicken) {
                 enemy.isNear = true;
             } else {
                 enemy.isNear = false;
+                enemy.standart_sound.pause();
             }
         })
     }
@@ -74,6 +77,7 @@ class World {
     checkThrowObjects() {
         let time = new Date().getTime();
         if (this.keyboard.D && this.character.bottles > 0 && time - this.last_throw > 500 && !this.character.isDead()) {
+            this.character.time = new Date().getTime();
             this.setThrowDirection();
             this.character.bottles--;
             this.bottleBar.setPercentage(this.character.bottles);
@@ -155,6 +159,12 @@ class World {
                 this.level.bottles.splice(this.level.bottles.indexOf(bottle), 1);
             }
         });
+    }
+
+
+    checkActuellTime() {
+        let newTime = new Date().getTime();
+        this.time = newTime;
     }
 
 

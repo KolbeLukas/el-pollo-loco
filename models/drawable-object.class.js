@@ -5,7 +5,6 @@ class DrawableObject {
     width;
     img;
     imageCache = {};
-    currentImage = 0;
 
     /**
      * 

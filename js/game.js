@@ -7,6 +7,10 @@ function init() {
     world = new World(canvas, keyboard);
 }
 
+// function initLevel() {
+//     canvas = document.getElementById('canvas');
+//     world = new World(canvas, keyboard);
+// }
 
 window.addEventListener('keydown', e => {
     if(e.key == 'ArrowRight'){

@@ -13,6 +13,8 @@ class World {
     death_enemies = [];
     endboss = this.level.enemies[0];
     time;
+    GameOverScreen = new Endscreen('img/9_intro_outro_screens/game_over/game over!.png', this.character.x - 80)
+    LostScreen = new Endscreen('img/9_intro_outro_screens/game_over/oh no you lost!.png', this.character.x - 80);
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -67,7 +69,7 @@ class World {
             } else if (this.character.isNear(enemy, 150, 80) && enemy instanceof Chicken) {
                 enemy.isNear = true;
             } else {
-                enemy.isNear = false;
+                // enemy.isNear = false;
                 enemy.standart_sound.pause();
             }
         })
@@ -76,7 +78,7 @@ class World {
 
     checkThrowObjects() {
         let time = new Date().getTime();
-        if (this.keyboard.D && this.character.bottles > 0 && time - this.last_throw > 500 && !this.character.isDead()) {
+        if (this.keyboard.D && this.character.bottles > 0 && time - this.last_throw > 1500 && !this.character.isDead()) {
             this.character.time = new Date().getTime();
             this.setThrowDirection();
             this.character.bottles--;
@@ -169,7 +171,6 @@ class World {
 
 
     draw() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.clouds);
@@ -181,7 +182,7 @@ class World {
         this.addObjectsToMap(this.level.bottles);
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.character.healthBar);
-        if (this.character.isNear(this.endboss, 470)) {
+        if (this.character.isNear(this.endboss, 520, 470)) {
             this.addToMap(this.endboss.healthBar);
         }
         this.addToMap(this.coinBar);
@@ -193,13 +194,35 @@ class World {
         requestAnimationFrame(function () {
             self.draw();
         });
+        if (this.character.y > this.canvas.height || this.endboss.isDead()) {
+            this.endGame();
+        }
     }
+
+
+    endGame() {
+        if (this.character.isDead()) {
+            this.addToMap(this.LostScreen);
+            this.character.dead_sound.pause();
+            document.getElementById('restart').classList.add('d-none');
+        }
+        if (this.endboss.isDead()){
+            this.addToMap(this.GameOverScreen);
+            setTimeout(() => {
+                this.endboss.dead_sound.pause(); 
+            }, 1000);
+            document.getElementById('restart').classList.add('d-none');
+        }
+        this.keyboard = 0;
+    }
+
 
     addObjectsToMap(objects) {
         objects.forEach(o => {
             this.addToMap(o);
         });
     }
+
 
     addToMap(mo) {
         if (mo.otherDirection) {
@@ -215,12 +238,14 @@ class World {
         }
     }
 
+
     flipImage(mo) {
         this.ctx.save();
         this.ctx.translate(mo.width, 0);
         this.ctx.scale(-1, 1);
         mo.x = mo.x * -1;
     }
+
 
     flipImageBack(mo) {
         this.ctx.restore();

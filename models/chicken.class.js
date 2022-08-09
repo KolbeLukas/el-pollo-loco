@@ -33,7 +33,9 @@ class Chicken extends MovableObject {
             if (!this.dead && !this.openMenu) {
                 this.playAnimation(this.IMAGES_WALKING);
                 if (this.isNear) {
-                    this.standart_sound.play();
+                    if (soundOn()) {
+                        this.standart_sound.play();
+                    }
                 }
             } else {
                 this.loadImage(this.IMG_DEATH);

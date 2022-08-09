@@ -24,6 +24,11 @@ function openMenu() {
 }
 
 
+function soundOn() {
+    return document.getElementById('sound').checked;
+}
+
+
 function enableFullScreen() {
     canvas = document.getElementById('canvas');
     let container = document.getElementById('content');

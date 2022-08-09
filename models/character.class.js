@@ -96,7 +96,7 @@ class Character extends MovableObject {
                 this.snoring_sound.pause();
                 this.time = new Date().getTime();
                 this.otherDirection = false;
-                if (!this.isAboveGround()) {
+                if (!this.isAboveGround() && soundOn()) {
                     this.walking_sound.play();
                 }
             }
@@ -105,7 +105,7 @@ class Character extends MovableObject {
                 this.snoring_sound.pause();
                 this.time = new Date().getTime();
                 this.otherDirection = true;
-                if (!this.isAboveGround()) {
+                if (!this.isAboveGround() && soundOn()) {
                     this.walking_sound.play();
                 }
             }
@@ -113,7 +113,9 @@ class Character extends MovableObject {
                 this.currentImage = 0;
                 this.jump();
                 this.snoring_sound.pause();
-                this.jump_sound.play();
+                if (soundOn()) {
+                    this.jump_sound.play();
+                }
             }
             this.world.camera_x = -this.x + 80;
         }, 1000 / 60);
@@ -121,14 +123,18 @@ class Character extends MovableObject {
         setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-                this.dead_sound.play();
+                if (soundOn()) {
+                    this.dead_sound.play();
+                }
             }
         }, 1000 / 5);
 
         setInterval(() => {
             if (this.isHurt() && !this.isDead()) {
-                this.getting_hit_sound.play();
                 this.playAnimation(this.IMAGES_HURT);
+                if (soundOn()) {
+                    this.getting_hit_sound.play();
+                }
             }
         }, 1000 / 3);
 
@@ -147,14 +153,16 @@ class Character extends MovableObject {
 
         setInterval(() => {
             if (this.idle(0.2) && !this.idle(3) && !this.isHurt() && !this.isDead()) {
-                this. playAnimation(this.IMAGES_IDEL)
+                this.playAnimation(this.IMAGES_IDEL)
             }
         }, 1000 / 6);
 
         setInterval(() => {
-            if (this.idle(3) && !this.isHurt() && !this.isDead() && !this.world.keyboard.ESC){
+            if (this.idle(3) && !this.isHurt() && !this.isDead() && !this.world.keyboard.ESC) {
                 this.playAnimation(this.IMAGES_LONGIDLE);
-                this.snoring_sound.play();
+                if (soundOn()) {
+                    this.snoring_sound.play();
+                }
             }
         }, 1000 / 6);
     }

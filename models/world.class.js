@@ -84,10 +84,14 @@ class World {
             this.setThrowDirection();
             this.character.bottles--;
             this.bottleBar.setPercentage(this.character.bottles);
-            this.character.throwing_sound.play();
+            if (soundOn()) {
+                this.character.throwing_sound.play();
+            }
             this.last_throw = time;
         } else if (this.keyboard.D && this.character.bottles == 0 && time - this.last_throw > 1000) {
-            this.character.no_bottle_sound.play();
+            if (soundOn()) {
+                this.character.no_bottle_sound.play();
+            }
             this.last_throw = time;
         }
     }
@@ -124,7 +128,9 @@ class World {
 
 
     chickenIsDead(enemy) {
-        enemy.hit_sound.play();
+        if (soundOn()) {
+            enemy.hit_sound.play();
+        }
         enemy.dead = true;
         this.death_enemies.push(enemy);
         this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1);
@@ -134,7 +140,9 @@ class World {
     bottleSplash(bottle) {
         let splash = new BottleSplash(bottle.x, bottle.y);
         this.splashBottles.push(splash);
-        splash.sound.play();
+        if (soundOn()) {
+            splash.sound.play();
+        }
         setTimeout(() => {
             this.splashBottles = [];
         }, 1000 / 2.5);
@@ -146,7 +154,9 @@ class World {
         this.level.coins.forEach(coin => {
             if (this.character.isColliding(coin)) {
                 this.character.collectCoin();
-                coin.collecting_sound.play();
+                if (soundOn()) {
+                    coin.collecting_sound.play();
+                }
                 this.coinBar.setPercentage(this.character.coins);
                 this.level.coins.splice(this.level.coins.indexOf(coin), 1);
             }
@@ -158,7 +168,9 @@ class World {
         this.level.bottles.forEach(bottle => {
             if (this.character.isColliding(bottle)) {
                 this.character.collectBottle();
-                bottle.collecting_sound.play();
+                if (soundOn()) {
+                    bottle.collecting_sound.play();
+                }
                 this.bottleBar.setPercentage(this.character.bottles);
                 this.level.bottles.splice(this.level.bottles.indexOf(bottle), 1);
             }
@@ -213,7 +225,7 @@ class World {
         requestAnimationFrame(function () {
             self.draw();
         });
-        if (this.character.y > this.canvas.height || this.endboss.isDead()) {
+        if (this.character.isDead() || this.endboss.isDead()) {
             this.endGame();
         }
     }

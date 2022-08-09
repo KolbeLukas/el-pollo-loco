@@ -30,7 +30,7 @@ class Endboss extends MovableObject {
         'img/4_enemie_boss_chicken/1_walk/G3.png',
         'img/4_enemie_boss_chicken/1_walk/G4.png',
     ];
-    IMAGES_ATTACKE =[
+    IMAGES_ATTACKE = [
         'img/4_enemie_boss_chicken/3_attack/G13.png',
         'img/4_enemie_boss_chicken/3_attack/G14.png',
         'img/4_enemie_boss_chicken/3_attack/G15.png',
@@ -71,7 +71,9 @@ class Endboss extends MovableObject {
         setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-                this.dead_sound.play();
+                if (soundOn()) {
+                    this.dead_sound.play();
+                }
             }
         }, 1000 / 6);
 
@@ -79,14 +81,18 @@ class Endboss extends MovableObject {
             if (this.isHurt() && !this.isDead()) {
                 this.playAnimation(this.IMAGES_HURT);
                 this.standart_sound.pause();
-                this.hit_sound.play();
+                if (soundOn()) {
+                    this.hit_sound.play();
+                }
             }
         }, 1000 / 6);
 
         setInterval(() => {
             if (this.attacke && !this.isDead()) {
                 this.playAnimation(this.IMAGES_ATTACKE);
-                this.attack_sound.play();
+                if (soundOn()) {
+                    this.attack_sound.play();
+                }
             }
         }, 1000 / 8);
 
@@ -95,8 +101,10 @@ class Endboss extends MovableObject {
                 if (i < 8) {
                     this.playAnimation(this.IMAGES_ALERT);
                 } else {
-                this.playAnimation(this.IMAGES_WALKING);
-                this.standart_sound.play();
+                    this.playAnimation(this.IMAGES_WALKING);
+                    if (soundOn()) {
+                        this.standart_sound.play();
+                    }
                 }
                 i++;
             }
@@ -107,7 +115,7 @@ class Endboss extends MovableObject {
                 if (i < 6) {
                     return;
                 } else {
-                this.moveLeft();
+                    this.moveLeft();
                 }
             }
         }, 1000 / 60);

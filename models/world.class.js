@@ -204,14 +204,14 @@ class World {
         if (this.character.isDead()) {
             this.addToMap(this.LostScreen);
             this.character.dead_sound.pause();
-            document.getElementById('restart').classList.add('d-none');
+            document.getElementById('restart').classList.remove('d-none');
         }
-        if (this.endboss.isDead()){
+        if (this.endboss.isDead()) {
             this.addToMap(this.GameOverScreen);
+            document.getElementById('restart').classList.remove('d-none');
             setTimeout(() => {
-                this.endboss.dead_sound.pause(); 
+                this.endboss.dead_sound.pause();
             }, 1000);
-            document.getElementById('restart').classList.add('d-none');
         }
         this.keyboard = 0;
     }

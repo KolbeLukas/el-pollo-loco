@@ -9,6 +9,7 @@ class BottleSplash extends MovableObject {
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/5_bottle_splash.png',
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png'
     ];
+    sound = new Audio('audio/bottle-splash.wav');
 
     constructor(x, y) {
         super().loadImage(this.IMAGES_SPLASH[0]);
@@ -17,7 +18,7 @@ class BottleSplash extends MovableObject {
         this.y = y;
         this.animate();
     }
-    
+
     animate() {
         setInterval(() => {
             this.playAnimation(this.IMAGES_SPLASH);

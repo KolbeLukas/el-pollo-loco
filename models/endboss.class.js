@@ -6,6 +6,7 @@ class Endboss extends MovableObject {
     isNear = false;
     speed = 1;
     attacke = false;
+    openMenu = false;
     offset = {
         top: 80,
         bottom: 80,
@@ -90,7 +91,7 @@ class Endboss extends MovableObject {
         }, 1000 / 8);
 
         setInterval(() => {
-            if (this.isNear && !this.attacke && !this.isHurt() && !this.isDead()) {
+            if (this.isNear && !this.attacke && !this.isHurt() && !this.isDead() && !this.openMenu) {
                 if (i < 8) {
                     this.playAnimation(this.IMAGES_ALERT);
                 } else {
@@ -102,7 +103,7 @@ class Endboss extends MovableObject {
         }, 1000 / 4);
 
         setInterval(() => {
-            if (this.isNear && !this.attacke && !this.isDead()) {
+            if (this.isNear && !this.attacke && !this.isDead() && !this.openMenu) {
                 if (i < 6) {
                     return;
                 } else {

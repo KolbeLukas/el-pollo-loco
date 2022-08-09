@@ -42,6 +42,7 @@ class World {
             this.checkBottleCollision();
             this.checkIsNear();
             this.checkActuellTime();
+            this.checkOpenMenu();
         }, 1000 / 40);
     }
 
@@ -133,6 +134,7 @@ class World {
     bottleSplash(bottle) {
         let splash = new BottleSplash(bottle.x, bottle.y);
         this.splashBottles.push(splash);
+        splash.sound.play();
         setTimeout(() => {
             this.splashBottles = [];
         }, 1000 / 2.5);
@@ -170,26 +172,43 @@ class World {
     }
 
 
-    draw() {
-        this.ctx.translate(this.camera_x, 0);
-        this.addObjectsToMap(this.level.backgroundObjects);
-        this.addObjectsToMap(this.level.clouds);
-        this.addObjectsToMap(this.level.coins);
-        this.addObjectsToMap(this.level.enemies);
-        this.addObjectsToMap(this.throwableObjects);
-        this.addObjectsToMap(this.splashBottles);
-        this.addObjectsToMap(this.death_enemies);
-        this.addObjectsToMap(this.level.bottles);
-        this.ctx.translate(-this.camera_x, 0);
-        this.addToMap(this.character.healthBar);
-        if (this.character.isNear(this.endboss, 520, 470)) {
-            this.addToMap(this.endboss.healthBar);
+    checkOpenMenu() {
+        if (this.keyboard.ESC) {
+            this.level.enemies.forEach(enemy => {
+                enemy.openMenu = true;
+                enemy.standart_sound.pause();
+            });
+            this.character.snoring_sound.pause();
+        } else {
+            this.level.enemies.forEach(enemy => {
+                enemy.openMenu = false;
+            });
         }
-        this.addToMap(this.coinBar);
-        this.addToMap(this.bottleBar);
-        this.ctx.translate(this.camera_x, 0);
-        this.addToMap(this.character);
-        this.ctx.translate(-this.camera_x, 0);
+    }
+
+
+    draw() {
+        if (!this.keyboard.ESC) {
+            this.ctx.translate(this.camera_x, 0);
+            this.addObjectsToMap(this.level.backgroundObjects);
+            this.addObjectsToMap(this.level.clouds);
+            this.addObjectsToMap(this.level.coins);
+            this.addObjectsToMap(this.level.enemies);
+            this.addObjectsToMap(this.throwableObjects);
+            this.addObjectsToMap(this.splashBottles);
+            this.addObjectsToMap(this.death_enemies);
+            this.addObjectsToMap(this.level.bottles);
+            this.ctx.translate(-this.camera_x, 0);
+            this.addToMap(this.character.healthBar);
+            if (this.character.isNear(this.endboss, 520, 470)) {
+                this.addToMap(this.endboss.healthBar);
+            }
+            this.addToMap(this.coinBar);
+            this.addToMap(this.bottleBar);
+            this.ctx.translate(this.camera_x, 0);
+            this.addToMap(this.character);
+            this.ctx.translate(-this.camera_x, 0);
+        }
         let self = this;
         requestAnimationFrame(function () {
             self.draw();

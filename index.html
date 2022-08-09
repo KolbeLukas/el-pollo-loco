@@ -32,13 +32,39 @@
     <script src="js/game.js"></script>
 </head>
 
-<body onload="init()">
+<body>
     <h1>El Pollo Loco</h1>
-    <div class="content">
+    <div id="content" class="content">
         <canvas id="canvas" width="720" height="480"></canvas>
-        <button class="d-none" id="restart">Restart</button>
+        <a href="index.html">
+            <button onclick="restartGame()" class="d-none" id="restart">Restart</button>
+        </a>
+        <div class="top-nav">
+            <div onclick="openMenu()" id="menu">Menu (ESC)</div>
+        </div>
+        <div id="menu-overlay" class="menu-overlay d-none">
+            <div class="menu">
+                <h2>Settings</h2>
+                <div class="settings">
+                    <span class="setting-name">Sound</span>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="settings">
+                    <span class="setting-name">Full Screen</span>
+                    <label class="switch">
+                        <input onclick="enableFullScreen()" id="full-screen" type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-nav">
+            <button id="start-game" onclick="initGame()">Start</button>
+        </div>
     </div>
-    <button id="test" onclick="initLevel()">Start</button>
 </body>
 
 </html>

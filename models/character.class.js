@@ -152,9 +152,9 @@ class Character extends MovableObject {
         }, 1000 / 6);
 
         setInterval(() => {
-            if (this.idle(3) && !this.isHurt() && !this.isDead()){
+            if (this.idle(3) && !this.isHurt() && !this.isDead() && !this.world.keyboard.ESC){
                 this.playAnimation(this.IMAGES_LONGIDLE);
-                // this.snoring_sound.play();
+                this.snoring_sound.play();
             }
         }, 1000 / 6);
     }

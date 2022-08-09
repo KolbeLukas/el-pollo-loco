@@ -7,10 +7,18 @@ body {
     margin: 0;
     background-image: url(../img/5_background/desert.jpg);
     background-position: center;
+    background-size: cover;
     font-family: 'Zabras', Arial, Helvetica, sans-serif;
+    letter-spacing: 2px;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 h1 {
+    position: absolute;
+    top: 0;
     font-size: 64px;
     letter-spacing: 3px;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
@@ -18,11 +26,97 @@ h1 {
 
 .content {
     position: absolute;
+    width: 720px;
+    height: 480px;
 }
 
 canvas {
-    background-color: black;
+    background-image: url(../img/9_intro_outro_screens/start/startscreen_1.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
     display: block;
+}
+
+.canvas-full-screen {
+    width: 100%;
+    height: 100%;
+}
+
+.top-nav {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    z-index: 1;
+}
+
+.bottom-nav {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+#start-game, #menu {
+    cursor: pointer;
+    border: none;
+    font-size: 40px;
+    padding: 10px 20px;
+    background-color: #FF9600;
+    border-radius: 30px;
+    box-shadow: 4px 2px 0px 0px #9e3b18;
+    font-family: 'Zabras', Arial, Helvetica, sans-serif;
+    letter-spacing: 2px;
+    transition: all 50ms ease-in-out;
+}
+
+#start-game:hover, #menu:hover {
+    background-color: #ec8d06;
+}
+
+.small {
+    font-size: 20px !important;
+    padding: 5px 10px !important;
+}
+
+.menu-overlay {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.menu {
+    width: 50%;
+    height: 50%;
+    background: #FF9600;
+    box-shadow: 4px 2px 0px 0px #9e3b18;
+    border-radius: 10px;
+}
+
+h2{
+    display: flex;
+    justify-content: center;
+}
+
+.settings {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.setting-name {
+    font-size: 32px;
+    margin-right: 10px;
 }
 
 #restart {
@@ -35,15 +129,76 @@ canvas {
     display: none;
 }
 
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: #2196F3;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
 
 @media only screen and (max-width: 720px) {
     canvas {
         width: 100%;
+    }
+
+    #start-game, #menu {
+        font-size: 25px;
     }
 }
 
 @media only screen and (max-height: 480px) {
     canvas {
         height: 100vh;
+    }
+
+    #start-game, #menu {
+        font-size: 25px;
     }
 }

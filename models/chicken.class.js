@@ -4,6 +4,7 @@ class Chicken extends MovableObject {
     width = 60;
     isNear = false;
     dead = false;
+    openMenu = false;
     IMAGES_WALKING = [
         'img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
         'img/3_enemies_chicken/chicken_normal/1_walk/2_w.png',
@@ -29,7 +30,7 @@ class Chicken extends MovableObject {
         }, 1000 / 60);
 
         setInterval(() => {
-            if (!this.dead) {
+            if (!this.dead && !this.openMenu) {
                 this.playAnimation(this.IMAGES_WALKING);
                 if (this.isNear) {
                     this.standart_sound.play();

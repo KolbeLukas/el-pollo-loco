@@ -12,10 +12,6 @@ body {
     letter-spacing: 2px;
 }
 
-* {
-    box-sizing: border-box;
-}
-
 h1 {
     position: absolute;
     top: 0;
@@ -45,7 +41,7 @@ canvas {
 .top-nav {
     position: absolute;
     top: 0;
-    width: 100%;
+    width: calc(100% - 20px);
     display: flex;
     justify-content: center;
     padding: 10px;
@@ -55,7 +51,7 @@ canvas {
 .bottom-nav {
     position: absolute;
     bottom: 0;
-    width: 100%;
+    width: calc(100% - 20px);
     display: flex;
     justify-content: center;
     padding: 10px;
@@ -184,6 +180,10 @@ input:checked+.slider:before {
 
 
 @media only screen and (max-width: 720px) {
+    .content {
+        width: 100%;
+        height: unset;
+    }
     canvas {
         width: 100%;
     }
@@ -194,6 +194,10 @@ input:checked+.slider:before {
 }
 
 @media only screen and (max-height: 480px) {
+    .content {
+        height: 100vh;
+        width: unset;
+    }
     canvas {
         height: 100vh;
     }

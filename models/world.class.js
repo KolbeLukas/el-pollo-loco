@@ -240,8 +240,9 @@ class World {
         if (this.endboss.isDead()) {
             this.addToMap(this.GameOverScreen);
             document.getElementById('restart').classList.remove('d-none');
+            this.character.snoring_sound.muted = true;
             setTimeout(() => {
-                this.endboss.dead_sound.pause();
+                this.endboss.dead_sound.muted = true;
             }, 1000);
         }
         this.keyboard = 0;

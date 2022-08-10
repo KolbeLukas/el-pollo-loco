@@ -16,10 +16,10 @@ function initGame() {
 function openMenu() {
     if (document.getElementById('menu-overlay').classList.contains('d-none')) {
         document.getElementById('menu-overlay').classList.remove('d-none');
-        keyboard.ESC = true;
+        keyboard.M = true;
     } else {
         document.getElementById('menu-overlay').classList.add('d-none');
-        keyboard.ESC = false;
+        keyboard.M = false;
     }
 }
 
@@ -32,37 +32,51 @@ function soundOn() {
 function enableFullScreen() {
     canvas = document.getElementById('canvas');
     let container = document.getElementById('content');
-    let input = document.getElementById('full-screen')
+    let input = document.getElementById('full-screen');
     if (input.checked) {
         container.requestFullscreen();
         canvas.classList.add('canvas-full-screen');
+        console.log(input.checked);
+    }
+    else {
+        document.exitFullscreen();
+        canvas.classList.remove('canvas-full-screen');
     }
 }
 
 
 window.addEventListener('keydown', e => {
-    if (e.key == 'ArrowRight' && !keyboard.ESC) {
+    if (e.key == 'ArrowRight' && !keyboard.M) {
         keyboard.RIGHT = true;
     }
-    if (e.key == 'ArrowLeft' && !keyboard.ESC) {
+    if (e.key == 'ArrowLeft' && !keyboard.M) {
         keyboard.LEFT = true;
     }
-    if (e.key == ' ' && !keyboard.ESC) {
+    if (e.key == ' ' && !keyboard.M) {
         keyboard.SPACE = true;
     }
-    if (e.key == 'd' && !keyboard.ESC) {
+    if (e.key == 'd' && !keyboard.M) {
         keyboard.D = true;
     }
-    if (e.key == 'Escape') {
+    if (e.key == 'm') {
         if (document.getElementById('menu-overlay').classList.contains('d-none')) {
-            keyboard.ESC = document.getElementById('menu-overlay').classList.remove('d-none');
-            keyboard.ESC = true;
+            keyboard.M = document.getElementById('menu-overlay').classList.remove('d-none');
+            keyboard.M = true;
         } else {
-            keyboard.ESC = document.getElementById('menu-overlay').classList.add('d-none');
-            keyboard.ESC = false;
+            keyboard.M = document.getElementById('menu-overlay').classList.add('d-none');
+            keyboard.M = false;
         }
     }
 });
+
+
+function test() {
+    if (document.fullscreenElement) {
+        console.log('fullscreen')
+    } else {
+        console.log('no')
+    }
+}
 
 
 window.addEventListener('keyup', e => {
@@ -77,5 +91,11 @@ window.addEventListener('keyup', e => {
     }
     if (e.key == 'd') {
         keyboard.D = false;
+    }
+});
+
+document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement) {
+        document.getElementById('full-screen').checked = false;
     }
 });

@@ -8,6 +8,7 @@ class Character extends MovableObject {
     healthBar = new HealthBar();
     coins = 0;
     bottles = 0;
+    openMenu = false;
     offset = {
         top: 110,
         bottom: 10,
@@ -158,7 +159,7 @@ class Character extends MovableObject {
         }, 1000 / 6);
 
         setInterval(() => {
-            if (this.idle(3) && !this.isHurt() && !this.isDead() && !this.world.keyboard.ESC) {
+            if (this.idle(3) && !this.isHurt() && !this.isDead() && !this.openMenu) {
                 this.playAnimation(this.IMAGES_LONGIDLE);
                 if (soundOn()) {
                     this.snoring_sound.play();

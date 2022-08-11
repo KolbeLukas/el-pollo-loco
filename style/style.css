@@ -57,7 +57,7 @@ canvas {
     padding: 10px;
 }
 
-#start-game, #menu {
+#start-game, #menu, #restart {
     cursor: pointer;
     border: none;
     font-size: 40px;
@@ -70,7 +70,7 @@ canvas {
     transition: all 50ms ease-in-out;
 }
 
-#start-game:hover, #menu:hover {
+#start-game:hover, #menu:hover, #restart:hover {
     background-color: #ec8d06;
 }
 
@@ -141,10 +141,17 @@ h2 {
     margin-right: 10px;
 }
 
-#restart {
+.restart-box {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 65%;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+a {
+    color: black;
+    text-decoration: none;
 }
 
 .switch {

@@ -57,6 +57,8 @@ class World {
                 this.character.hit();
                 if (enemy == this.endboss) {
                     this.endboss.attacke = true;
+                    console.log(this.endboss.attacke)
+                    // console.log(!this.endboss.isDead())
                 }
             } else {
                 this.endboss.attacke = false;
@@ -69,10 +71,12 @@ class World {
         this.level.enemies.forEach(enemy => {
             if (this.character.isNear(enemy, 435, 80) && enemy instanceof Endboss) {
                 enemy.isNear = true;
+                enemy.standart_sound.muted = false;
             } else if (this.character.isNear(enemy, 150, 80) && (enemy instanceof Chicken || enemy instanceof SmallChicken)) {
                 enemy.isNear = true;
+                enemy.standart_sound.muted = false;
             } else {
-                enemy.standart_sound.pause();
+                enemy.standart_sound.muted = true;
             }
         })
     }
@@ -167,7 +171,7 @@ class World {
 
     checkBottleCollision() {
         this.level.bottles.forEach(bottle => {
-            if (this.character.isColliding(bottle)) {
+            if (this.character.isColliding(bottle) && !this.endboss.isDead()) {
                 this.character.collectBottle();
                 if (soundOn()) {
                     bottle.collecting_sound.play();
@@ -178,6 +182,7 @@ class World {
                 setTimeout(() => {
                     this.level.bottles.push(bottle)
                 }, 10000);
+                console.log(this.bottleRespawn)
             }
         });
     }
@@ -195,12 +200,13 @@ class World {
                 enemy.openMenu = true;
                 enemy.standart_sound.pause();
             });
-            this.character.snoring_sound.muted = true;
+            this.character.openMenu = true;
+            this.character.snoring_sound.pause();
         } else {
             this.level.enemies.forEach(enemy => {
                 enemy.openMenu = false;
             });
-            this.character.snoring_sound.muted = false;
+            this.character.openMenu = false;
         }
     }
 
@@ -240,13 +246,14 @@ class World {
     endGame() {
         if (this.character.isDead()) {
             this.addToMap(this.LostScreen);
-            this.character.dead_sound.pause();
+            this.character.dead_sound.muted = true;
             document.getElementById('restart').classList.remove('d-none');
         }
         if (this.endboss.isDead()) {
             this.addToMap(this.GameOverScreen);
             document.getElementById('restart').classList.remove('d-none');
             this.character.snoring_sound.muted = true;
+            this.endboss.standart_sound.pause();
             setTimeout(() => {
                 this.endboss.dead_sound.muted = true;
             }, 1000);

@@ -89,6 +89,7 @@ class Endboss extends MovableObject {
 
         setInterval(() => {
             if (this.attacke && !this.isDead()) {
+                console.log('attacke')
                 this.playAnimation(this.IMAGES_ATTACKE);
                 if (soundOn()) {
                     this.attack_sound.play();

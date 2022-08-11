@@ -11,7 +11,7 @@ class Endboss extends MovableObject {
     offset = {
         top: 80,
         bottom: 80,
-        left: 35,
+        left: 60,
         right: 10
     };
     healthBar = new EndbossHealthBar();

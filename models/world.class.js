@@ -58,7 +58,6 @@ class World {
                 if (enemy == this.endboss) {
                     this.endboss.attacke = true;
                     console.log(this.endboss.attacke)
-                    // console.log(!this.endboss.isDead())
                 }
             } else {
                 this.endboss.attacke = false;

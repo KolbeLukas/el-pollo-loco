@@ -1,7 +1,7 @@
 let canvas;
 let world;
+let gameStarted = false;
 let keyboard = new Keyboard();
-
 
 function initGame() {
     canvas = document.getElementById('canvas');
@@ -9,7 +9,8 @@ function initGame() {
     document.getElementById('start-game').classList.add('d-none');
     document.getElementById('menu').classList.add('small');
     document.getElementById('menu-overlay').classList.add('d-none');
-    keyboard.ESC = false;
+    keyboard.M = false;
+    gameStarted = true;
 }
 
 

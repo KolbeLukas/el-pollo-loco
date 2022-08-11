@@ -24,6 +24,12 @@ function openMenu() {
 }
 
 
+function openNextSettingPage(next, active) {
+    document.getElementById(next).classList.remove('d-none');
+    document.getElementById(active).classList.add('d-none');
+}
+
+
 function soundOn() {
     return document.getElementById('sound').checked;
 }
@@ -68,15 +74,6 @@ window.addEventListener('keydown', e => {
         }
     }
 });
-
-
-function test() {
-    if (document.fullscreenElement) {
-        console.log('fullscreen')
-    } else {
-        console.log('no')
-    }
-}
 
 
 window.addEventListener('keyup', e => {

@@ -18,6 +18,7 @@
     <script src="models/bottle-bar.class.js"></script>
     <script src="models/endboss-health-bar.clss.js"></script>
     <script src="models/chicken.class.js"></script>
+    <script src="models/small-chicken.class.js"></script>
     <script src="models/endboss.class.js"></script>
     <script src="models/coin.class.js"></script>
     <script src="models/bottle-on-ground.class.js"></script>
@@ -44,20 +45,49 @@
         </div>
         <div id="menu-overlay" class="menu-overlay d-none">
             <div class="menu">
-                <h2>Settings</h2>
-                <div class="settings">
-                    <span class="setting-name">Sound</span>
-                    <label class="switch">
-                        <input id="sound" type="checkbox" checked>
-                        <span class="slider round"></span>
-                    </label>
-                </div>
-                <div class="settings">
-                    <span class="setting-name">Full Screen</span>
-                    <label class="switch">
-                        <input onclick="enableFullScreen()" id="full-screen" type="checkbox">
-                        <span class="slider round"></span>
-                    </label>
+                <div class="container">
+                    <div id="settings" class="setting-box">
+                        <div class="menu-head">
+                            <h2 class="active">Settings</h2>
+                            <h2 onclick="openNextSettingPage('control', 'settings')">Control</h2>
+                        </div>
+                        <div class="settings">
+                            <span class="setting-name">Sound</span>
+                            <label class="switch">
+                                <input id="sound" type="checkbox" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="settings">
+                            <span class="setting-name">Full Screen</span>
+                            <label class="switch">
+                                <input onclick="enableFullScreen()" id="full-screen" type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div id="control" class="control d-none">
+                        <div class="menu-head">
+                            <h2 onclick="openNextSettingPage('settings', 'control')">Settings</h2>
+                            <h2 class="active">Control</h2>
+                        </div>
+                        <div class="settings">
+                            <span class="setting-name">move left:</span>
+                            <span>Arrow left</span>
+                        </div>
+                        <div class="settings">
+                            <span class="setting-name">move right:</span>
+                            <span>Arrow right</span>
+                        </div>
+                        <div class="settings">
+                            <span class="setting-name">jump:</span>
+                            <span>space</span>
+                        </div>
+                        <div class="settings">
+                            <span class="setting-name">throw:</span>
+                            <span>d</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

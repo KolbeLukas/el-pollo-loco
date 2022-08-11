@@ -9,6 +9,7 @@ class World {
     bottleBar = new BottleBar();
     throwableObjects = [];
     splashBottles = [];
+    bottleRespawn = [];
     last_throw = new Date().getTime();
     death_enemies = [];
     endboss = this.level.enemies[0];
@@ -49,8 +50,9 @@ class World {
 
     checkEnemyCollisions() {
         this.level.enemies.forEach(enemy => {
-            if (this.character.isColliding(enemy) && this.character.isFalling() && enemy instanceof Chicken) {
+            if (this.character.isColliding(enemy) && this.character.isFalling() && (enemy instanceof Chicken || enemy instanceof SmallChicken)) {
                 this.chickenIsDead(enemy);
+                enemy.standart_sound.pause();
             } else if (this.character.isColliding(enemy) && !this.endboss.isDead()) {
                 this.character.hit();
                 if (enemy == this.endboss) {
@@ -67,10 +69,9 @@ class World {
         this.level.enemies.forEach(enemy => {
             if (this.character.isNear(enemy, 435, 80) && enemy instanceof Endboss) {
                 enemy.isNear = true;
-            } else if (this.character.isNear(enemy, 150, 80) && enemy instanceof Chicken) {
+            } else if (this.character.isNear(enemy, 150, 80) && (enemy instanceof Chicken || enemy instanceof SmallChicken)) {
                 enemy.isNear = true;
             } else {
-                // enemy.isNear = false;
                 enemy.standart_sound.pause();
             }
         })
@@ -173,6 +174,10 @@ class World {
                 }
                 this.bottleBar.setPercentage(this.character.bottles);
                 this.level.bottles.splice(this.level.bottles.indexOf(bottle), 1);
+                this.bottleRespawn.push(bottle);
+                setTimeout(() => {
+                    this.level.bottles.push(bottle)
+                }, 10000);
             }
         });
     }
@@ -185,16 +190,17 @@ class World {
 
 
     checkOpenMenu() {
-        if (this.keyboard.ESC) {
+        if (this.keyboard.M) {
             this.level.enemies.forEach(enemy => {
                 enemy.openMenu = true;
                 enemy.standart_sound.pause();
             });
-            this.character.snoring_sound.pause();
+            this.character.snoring_sound.muted = true;
         } else {
             this.level.enemies.forEach(enemy => {
                 enemy.openMenu = false;
             });
+            this.character.snoring_sound.muted = false;
         }
     }
 

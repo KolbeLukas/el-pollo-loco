@@ -7,7 +7,7 @@ class Character extends MovableObject {
     health = 100;
     healthBar = new HealthBar();
     coins = 0;
-    bottles = 1;
+    bottles = 0;
     offset = {
         top: 110,
         bottom: 10,

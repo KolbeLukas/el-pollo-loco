@@ -1,4 +1,4 @@
-class Chicken extends MovableObject {
+class SmallChicken extends MovableObject {
     y = 380;
     height = 61.23;
     width = 60;
@@ -6,11 +6,11 @@ class Chicken extends MovableObject {
     dead = false;
     openMenu = false;
     IMAGES_WALKING = [
-        'img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
-        'img/3_enemies_chicken/chicken_normal/1_walk/2_w.png',
-        'img/3_enemies_chicken/chicken_normal/1_walk/3_w.png'
+        'img/3_enemies_chicken/chicken_small/1_walk/1_w.png',
+        'img/3_enemies_chicken/chicken_small/1_walk/2_w.png',
+        'img/3_enemies_chicken/chicken_small/1_walk/3_w.png'
     ];
-    IMG_DEATH = 'img/3_enemies_chicken/chicken_normal/2_dead/dead.png';
+    IMG_DEATH = 'img/3_enemies_chicken/chicken_small/2_dead/dead.png';
     standart_sound = new Audio('audio/chicken.wav');
     hit_sound = new Audio('audio/hit_chicken.wav');
 

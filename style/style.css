@@ -96,11 +96,21 @@ canvas {
     background: #FF9600;
     box-shadow: 4px 2px 0px 0px #9e3b18;
     border-radius: 10px;
+    overflow: auto;
 }
 
-h2{
+.menu-head {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+}
+
+h2 {
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.active {
+    border-bottom: 2px solid black;
 }
 
 .settings {
@@ -110,8 +120,24 @@ h2{
     margin-bottom: 10px;
 }
 
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+}
+
+.setting-box {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.control {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
 .setting-name {
-    font-size: 32px;
+    font-size: 25px;
     margin-right: 10px;
 }
 
@@ -121,15 +147,11 @@ h2{
     left: 50%;
 }
 
-.d-none {
-    display: none;
-}
-
 .switch {
     position: relative;
     display: inline-block;
-    width: 60px;
-    height: 34px;
+    width: 45px;
+    height: 26px;
 }
 
 .switch input {
@@ -146,7 +168,6 @@ h2{
     right: 0;
     bottom: 0;
     background-color: #ccc;
-    -webkit-transition: .4s;
     transition: .4s;
     border-radius: 34px;
 }
@@ -154,12 +175,11 @@ h2{
 .slider:before {
     position: absolute;
     content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
     background-color: white;
-    -webkit-transition: .4s;
     transition: .4s;
     border-radius: 50%;
 }
@@ -173,9 +193,11 @@ input:focus+.slider {
 }
 
 input:checked+.slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
+    transform: translateX(18px);
+}
+
+.d-none {
+    display: none;
 }
 
 
@@ -184,6 +206,7 @@ input:checked+.slider:before {
         width: 100%;
         height: unset;
     }
+
     canvas {
         width: 100%;
     }
@@ -198,6 +221,7 @@ input:checked+.slider:before {
         height: 100vh;
         width: unset;
     }
+
     canvas {
         height: 100vh;
     }

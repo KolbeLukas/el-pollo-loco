@@ -16,7 +16,7 @@ class BottleBar extends DrawableObject {
         this.loadImages(this.IMAGES_BOTTLECOUNT);
         this.x = 5;
         this.y = 80;
-        this.setPercentage(1);
+        this.setPercentage(0);
     }
 
     setPercentage(amount) {
@@ -26,13 +26,13 @@ class BottleBar extends DrawableObject {
     }
 
     resolveImageIndex() {
-        if (this.amount >= 9) {
+        if (this.amount >= 5) {
             return 5;
-        } else if (this.amount >= 7) {
+        } else if (this.amount >= 4) {
             return 4;
-        } else if (this.amount >= 5) {
-            return 3;
         } else if (this.amount >= 3) {
+            return 3;
+        } else if (this.amount >= 2) {
             return 2;
         } else if (this.amount >= 1) {
             return 1;

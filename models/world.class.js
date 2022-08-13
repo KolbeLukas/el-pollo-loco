@@ -56,11 +56,10 @@ class World {
             } else if (this.character.isColliding(enemy) && !this.endboss.isDead()) {
                 this.character.hit();
                 if (enemy == this.endboss) {
-                    this.endboss.attacke = true;
-                    console.log(this.endboss.attacke)
+                    enemy.attacke = true;
                 }
             } else {
-                this.endboss.attacke = false;
+                enemy.attacke = false;
             }
         });
     }
@@ -181,7 +180,6 @@ class World {
                 setTimeout(() => {
                     this.level.bottles.push(bottle)
                 }, 10000);
-                console.log(this.bottleRespawn)
             }
         });
     }

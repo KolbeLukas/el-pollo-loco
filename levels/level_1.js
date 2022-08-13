@@ -50,11 +50,11 @@ let level_1 = new Level(
         new BackgroundObject('img/5_background/layers/1_first_layer/1.png', 719 * 4),
     ],
     [
-        new Coin(400, 100),
-        new Coin(800, 100),
-        new Coin(1200, 100),
-        new Coin(1600, 100),
-        new Coin(2000, 100)
+        new Coin(400),
+        new Coin(800),
+        new Coin(1200),
+        new Coin(1600),
+        new Coin(2000)
     ],
     [
         new BottleOnGround(400),

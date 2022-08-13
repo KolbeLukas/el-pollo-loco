@@ -127,7 +127,7 @@ class World {
             this.throwableObjects.forEach(bottle => {
                 if (bottle.isColliding(enemy)) {
                     this.bottleSplash(bottle);
-                    if (enemy instanceof Chicken) {
+                    if (enemy instanceof Chicken || enemy instanceof SmallChicken) {
                         this.chickenIsDead(enemy);
                     } else {
                         enemy.hitBoss();

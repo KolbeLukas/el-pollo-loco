@@ -49,15 +49,53 @@ canvas {
 }
 
 .bottom-nav {
+    width: 100%;
     position: absolute;
     bottom: 0;
-    width: calc(100% - 20px);
-    display: flex;
-    justify-content: center;
-    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
 }
 
-#start-game, #menu, #restart {
+.start-box {
+    grid-area: 1 / 1 / 2 / 2;
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+
+.mobil-hud {
+    grid-area: 1 / 1 / 2 / 2;
+    display: flex;
+    justify-content: space-between;
+}
+
+.hud-box {
+    display: flex;
+    padding-inline: 5px;
+}
+
+.hud-btn {
+    cursor: pointer;
+    border: none;
+    background-color: #FF9600;
+    border-radius: 100%;
+    border: 1px solid #9e3b18;
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    margin: 5px;
+}
+
+.hud-btn img {
+    height: 40px;
+    width: 40px;
+}
+
+
+.start-game, #menu, #restart {
     cursor: pointer;
     border: none;
     font-size: 40px;
@@ -70,7 +108,7 @@ canvas {
     transition: all 50ms ease-in-out;
 }
 
-#start-game:hover, #menu:hover, #restart:hover {
+.start-game:hover, #menu:hover, #restart:hover, .hud-btn:hover {
     background-color: #ec8d06;
 }
 

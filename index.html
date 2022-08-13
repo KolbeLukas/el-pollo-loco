@@ -92,8 +92,29 @@
             </div>
         </div>
         <div class="bottom-nav">
-            <button id="start-game" onclick="initGame()">Start</button>
+            <div id="start-game" class="start-box">
+                <button class="start-game" onclick="initGame()">Start</button>
+            </div>
+            <div id="hud" class="mobil-hud d-none">
+                <div class="hud-box">
+                    <button id="btn-jump" class="hud-btn">
+                        <img src="img/1_HUD/jump.png">
+                    </button>
+                    <button id="btn-throw" class="hud-btn">
+                        <img src="img/1_HUD/throw.png">
+                    </button>
+                </div>
+                <div class="hud-box">
+                    <button id="btn-left" class="hud-btn">
+                        <img src="img/1_HUD/left.png">
+                    </button>
+                    <button id="btn-right" class="hud-btn">
+                        <img src="img/1_HUD/right.png">
+                    </button>
+                </div>
+            </div>
         </div>
+
     </div>
 </body>
 

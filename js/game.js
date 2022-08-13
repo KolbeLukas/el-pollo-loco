@@ -1,12 +1,14 @@
 let canvas;
 let world;
 let gameStarted = false;
-let keyboard = new Keyboard();
+let keyboard;
 
 function initGame() {
+    keyboard = new Keyboard();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     document.getElementById('start-game').classList.add('d-none');
+    document.getElementById('hud').classList.remove('d-none');
     document.getElementById('menu').classList.add('small');
     document.getElementById('menu-overlay').classList.add('d-none');
     keyboard.M = false;
@@ -17,10 +19,14 @@ function initGame() {
 function openMenu() {
     if (document.getElementById('menu-overlay').classList.contains('d-none')) {
         document.getElementById('menu-overlay').classList.remove('d-none');
-        keyboard.M = true;
+        if(world) {
+            world.keyboard.M = true;
+        }
     } else {
         document.getElementById('menu-overlay').classList.add('d-none');
-        keyboard.M = false;
+        if(world) {
+            world.keyboard.M = false;
+        }
     }
 }
 
@@ -51,46 +57,6 @@ function enableFullScreen() {
     }
 }
 
-
-window.addEventListener('keydown', e => {
-    if (e.key == 'ArrowRight' && !keyboard.M) {
-        keyboard.RIGHT = true;
-    }
-    if (e.key == 'ArrowLeft' && !keyboard.M) {
-        keyboard.LEFT = true;
-    }
-    if (e.key == ' ' && !keyboard.M) {
-        keyboard.SPACE = true;
-    }
-    if (e.key == 'd' && !keyboard.M) {
-        keyboard.D = true;
-    }
-    if (e.key == 'm') {
-        if (document.getElementById('menu-overlay').classList.contains('d-none')) {
-            keyboard.M = document.getElementById('menu-overlay').classList.remove('d-none');
-            keyboard.M = true;
-        } else {
-            keyboard.M = document.getElementById('menu-overlay').classList.add('d-none');
-            keyboard.M = false;
-        }
-    }
-});
-
-
-window.addEventListener('keyup', e => {
-    if (e.key == 'ArrowRight') {
-        keyboard.RIGHT = false;
-    }
-    if (e.key == 'ArrowLeft') {
-        keyboard.LEFT = false;
-    }
-    if (e.key == ' ') {
-        keyboard.SPACE = false;
-    }
-    if (e.key == 'd') {
-        keyboard.D = false;
-    }
-});
 
 document.addEventListener('fullscreenchange', () => {
     if (!document.fullscreenElement) {

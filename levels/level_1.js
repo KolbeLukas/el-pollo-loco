@@ -51,7 +51,10 @@ let level_1 = new Level(
     ],
     [
         new Coin(400, 100),
-        new Coin(500, 200),
+        new Coin(800, 100),
+        new Coin(1200, 100),
+        new Coin(1600, 100),
+        new Coin(2000, 100)
     ],
     [
         new BottleOnGround(400),

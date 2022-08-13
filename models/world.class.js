@@ -14,6 +14,7 @@ class World {
     death_enemies = [];
     endboss = this.level.enemies[0];
     time;
+    music = new Audio('audio/music.wav');
     GameOverScreen = new Endscreen('img/9_intro_outro_screens/game_over/game over!.png', this.character.x - 80)
     LostScreen = new Endscreen('img/9_intro_outro_screens/game_over/oh no you lost!.png', this.character.x - 80);
 
@@ -30,10 +31,11 @@ class World {
     setWorld() {
         this.character.world = this;
     }
-
+    
 
     update() {
         setInterval(() => {
+            this.playMusic();
             this.checkEnemyCollisions();
             this.checkThrowObjects();
             if (this.throwableObjects.length > 0) {
@@ -45,6 +47,15 @@ class World {
             this.checkActuellTime();
             this.checkOpenMenu();
         }, 1000 / 40);
+    }
+
+
+    playMusic() {
+        if (soundOn()) {
+            this.music.play();
+        } else {
+            this.music.pause();
+        }
     }
 
 
@@ -272,8 +283,8 @@ class World {
         }
 
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
-        mo.drawFrame2(this.ctx);
+        // mo.drawFrame(this.ctx);
+        // mo.drawFrame2(this.ctx);
 
         if (mo.otherDirection) {
             this.flipImageBack(mo);

@@ -22,12 +22,16 @@ class Chicken extends MovableObject {
         this.animate();
     }
 
+    /**
+     * renders the images in a certain speed after each other and sets the sound
+     */
     animate() {
         setInterval(() => {
             if (!this.dead && !this.openMenu && gameStarted) {
                 this.moveLeft();
             }
         }, 1000 / 60);
+
 
         setInterval(() => {
             if (this.dead) {

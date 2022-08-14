@@ -19,12 +19,20 @@ class CoinBar extends DrawableObject {
         this.setPercentage(0);
     }
 
+    /**
+     * sets the size of the coinebar
+     * @param {how much coins collected} amount 
+     */
     setPercentage(amount) {
         this.amount = amount;
         let path = this.IMAGES_COINCOUNT[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
 
+    /**
+     * 
+     * @returns how much coins collected
+     */
     resolveImageIndex() {
         if (this.amount == 5) {
             return 5;

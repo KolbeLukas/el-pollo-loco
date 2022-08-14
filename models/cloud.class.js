@@ -15,10 +15,17 @@ class Cloud extends MovableObject {
         this.animate();
     }
 
+    /**
+     * 
+     * @returns a random number in between 0 and 1
+     */
     number() {
         return Math.round(Math.random());
     }
 
+    /**
+     * renders the images in a certain speed after each other
+     */
     animate() {
         setInterval(() => {
             this.moveLeft();

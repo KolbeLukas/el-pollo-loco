@@ -89,6 +89,9 @@ class Character extends MovableObject {
         this.animate();
     }
 
+    /**
+     * renders the images in a certain speed after each other and sets the sound
+     */
     animate() {
         setInterval(() => {
             this.walking_sound.pause();
@@ -121,6 +124,7 @@ class Character extends MovableObject {
             this.world.camera_x = -this.x + 80;
         }, 1000 / 60);
 
+
         setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
@@ -129,6 +133,7 @@ class Character extends MovableObject {
                 }
             }
         }, 1000 / 5);
+
 
         setInterval(() => {
             if (this.isHurt() && !this.isDead()) {
@@ -139,6 +144,7 @@ class Character extends MovableObject {
             }
         }, 1000 / 3);
 
+
         setInterval(() => {
             if (this.isAboveGround() && !this.isHurt()) {
                 this.playAnimation(this.IMAGES_JUMPING);
@@ -146,17 +152,20 @@ class Character extends MovableObject {
             }
         }, 1000 / 5);
 
+
         setInterval(() => {
             if (this.world.keyboard.RIGHT && !this.isAboveGround() && !this.isHurt() || this.world.keyboard.LEFT && !this.isAboveGround() && !this.isHurt()) {
                 this.playAnimation(this.IMAGES_WALKING);
             }
         }, 1000 / 12);
 
+
         setInterval(() => {
             if (this.idle(0.2) && !this.idle(3) && !this.isHurt() && !this.isDead()) {
                 this.playAnimation(this.IMAGES_IDEL)
             }
         }, 1000 / 6);
+
 
         setInterval(() => {
             if (this.idle(3) && !this.isHurt() && !this.isDead() && !this.openMenu) {

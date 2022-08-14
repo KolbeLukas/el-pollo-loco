@@ -23,6 +23,10 @@ class ThrowableObject extends MovableObject {
         this.animate();
     }
 
+    /**
+     * sets how fast and far the bottle flies
+     * @param {the direktion in which the bottle has to fly} direktion 
+     */
     throw(direktion) {
         this.speedY = 10;
         this.applyGravity();
@@ -31,6 +35,9 @@ class ThrowableObject extends MovableObject {
         }, 25)
     }
 
+    /**
+     * renders the images in a certain speed after each other and sets the sound
+     */
     animate() {
         setInterval(() => {
             this.playAnimation(this.IMAGES_ROTATE);

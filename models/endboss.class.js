@@ -66,6 +66,9 @@ class Endboss extends MovableObject {
         this.animate();
     }
 
+    /**
+     * renders the images in a certain speed after each other and sets the sound
+     */
     animate() {
         let i = 0;
         setInterval(() => {
@@ -77,6 +80,7 @@ class Endboss extends MovableObject {
             }
         }, 1000 / 6);
 
+
         setInterval(() => {
             if (this.isHurt() && !this.isDead()) {
                 this.playAnimation(this.IMAGES_HURT);
@@ -87,6 +91,7 @@ class Endboss extends MovableObject {
             }
         }, 1000 / 6);
 
+
         setInterval(() => {
             if (this.attacke && !this.isDead()) {
                 this.playAnimation(this.IMAGES_ATTACKE);
@@ -95,6 +100,7 @@ class Endboss extends MovableObject {
                 }
             }
         }, 1000 / 8);
+
 
         setInterval(() => {
             if (this.isNear && !this.attacke && !this.isHurt() && !this.isDead() && !this.openMenu) {
@@ -109,6 +115,7 @@ class Endboss extends MovableObject {
                 i++;
             }
         }, 1000 / 4);
+
 
         setInterval(() => {
             if (this.isNear && !this.attacke && !this.isDead() && !this.openMenu) {

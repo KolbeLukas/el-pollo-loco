@@ -13,6 +13,10 @@ class BottleOnGround extends MovableObject {
         this.width = 30;
     }
     
+    /**
+     * 
+     * @returns a random number in between 0 and 1
+     */
     number() {
         return Math.round(Math.random());
     }

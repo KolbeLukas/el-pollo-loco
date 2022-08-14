@@ -10,7 +10,9 @@ class Keyboard {
       this.btnPressEvent();
    }
 
-
+   /**
+    * getting informations if an certain key is preesed and what is happening than
+    */
    keyEvent() {
       window.addEventListener('keydown', e => {
          if (e.key == 'ArrowRight' && !this.M) {
@@ -60,6 +62,9 @@ class Keyboard {
       });
    }
 
+   /**
+    * getting informations if an certain mobile button is preesed and what is happening than
+    */
    btnPressEvent() {
       document.getElementById('btn-right').addEventListener('touchstart', () => {
          this.RIGHT = true;

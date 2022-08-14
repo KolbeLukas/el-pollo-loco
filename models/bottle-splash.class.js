@@ -19,6 +19,9 @@ class BottleSplash extends MovableObject {
         this.animate();
     }
 
+    /**
+     * renders the images in a certain speed after each other
+     */
     animate() {
         setInterval(() => {
             this.playAnimation(this.IMAGES_SPLASH);

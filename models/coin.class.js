@@ -9,7 +9,7 @@ class Coin extends MovableObject {
     img = 'img/8_coin/coin.png';
     collecting_sound = new Audio('audio/collect-coin.wav');
 
-    constructor(x, y) {
+    constructor(x) {
         super().loadImage(this.img);
         this.x = x + Math.random() * 200;
         this.y = Math.random() * 300;

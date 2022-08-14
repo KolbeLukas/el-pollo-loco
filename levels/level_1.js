@@ -1,3 +1,4 @@
+let gameStarted = false;
 let level_1 = new Level(
     [
         new Endboss(),

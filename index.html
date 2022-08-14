@@ -30,10 +30,10 @@
     <script src="models/keyboard.class.js"></script>
     <script src="models/level.class.js"></script>
     <script src="levels/level_1.js"></script>
-    <script src="js/game.js"></script>
+    <script src="js/game.js" defer></script>
 </head>
 
-<body>
+<body onload="init()">
     <h1>El Pollo Loco</h1>
     <div id="content" class="content">
         <canvas id="canvas" width="720" height="480"></canvas>
@@ -43,8 +43,8 @@
         <div class="top-nav">
             <div onclick="openMenu()" id="menu">Menu (M)</div>
         </div>
-        <div id="menu-overlay" class="menu-overlay d-none">
-            <div class="menu">
+        <div onclick="closeMenu()" id="menu-overlay" class="menu-overlay d-none">
+            <div onclick="doNotCloseMenu(event)" class="menu">
                 <div class="container">
                     <div id="settings" class="setting-box">
                         <div class="menu-head">
@@ -54,7 +54,14 @@
                         <div class="settings">
                             <span class="setting-name">Sound</span>
                             <label class="switch">
-                                <input id="sound" type="checkbox" checked>
+                                <input onclick="sound()" id="sound" type="checkbox" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="settings">
+                            <span class="setting-name">Music</span>
+                            <label class="switch">
+                                <input onclick="music()" id="music" type="checkbox" checked>
                                 <span class="slider round"></span>
                             </label>
                         </div>

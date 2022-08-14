@@ -1,10 +1,14 @@
 let canvas;
 let world;
-let gameStarted = false;
-let keyboard;
+let keyboard = new Keyboard();
+
+function init() {
+    document.getElementById('sound').checked = JSON.parse(localStorage.getItem('sound'));
+    document.getElementById('music').checked = JSON.parse(localStorage.getItem('music'));
+}
+
 
 function initGame() {
-    keyboard = new Keyboard();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     document.getElementById('start-game').classList.add('d-none');
@@ -31,14 +35,38 @@ function openMenu() {
 }
 
 
+function closeMenu() {
+    document.getElementById('menu-overlay').classList.add('d-none');
+    world.keyboard.M = false;
+}
+
+function doNotCloseMenu(event){
+    event.stopPropagation();
+}
+
+
 function openNextSettingPage(next, active) {
     document.getElementById(next).classList.remove('d-none');
     document.getElementById(active).classList.add('d-none');
 }
 
 
+function sound() {
+    localStorage.setItem('sound', document.getElementById('sound').checked);
+}
+
+function music() {
+    localStorage.setItem('music', document.getElementById('music').checked);
+}
+
+
 function soundOn() {
     return document.getElementById('sound').checked;
+}
+
+
+function musicOn() {
+    return document.getElementById('music').checked;
 }
 
 

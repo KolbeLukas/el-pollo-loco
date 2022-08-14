@@ -1,7 +1,7 @@
 class Chicken extends MovableObject {
-    y = 380;
-    height = 61.23;
-    width = 60;
+    y = 360;
+    height = 81.64;
+    width = 80;
     isNear = false;
     dead = false;
     openMenu = false;

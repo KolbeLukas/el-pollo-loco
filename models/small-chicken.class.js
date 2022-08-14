@@ -1,7 +1,7 @@
 class SmallChicken extends MovableObject {
-    y = 400;
-    height = 40;
-    width = 44.952;
+    y = 380;
+    height = 60;
+    width = 67.428;
     isNear = false;
     dead = false;
     openMenu = false;

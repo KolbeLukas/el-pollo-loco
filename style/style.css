@@ -208,7 +208,7 @@ h2 {
 
 .restart-box {
     position: absolute;
-    top: 65%;
+    top: 70%;
     display: flex;
     justify-content: center;
     width: 100%;
@@ -275,7 +275,7 @@ input:checked+.slider:before {
 
 @media only screen and (max-width: 720px) {
     .content {
-        width: 100%;
+        width: 100% !important;
         height: unset;
     }
 

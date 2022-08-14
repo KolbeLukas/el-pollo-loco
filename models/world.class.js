@@ -51,7 +51,7 @@ class World {
 
 
     playMusic() {
-        if (soundOn()) {
+        if (musicOn()) {
             this.music.play();
         } else {
             this.music.pause();

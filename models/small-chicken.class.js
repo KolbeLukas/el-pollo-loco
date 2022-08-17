@@ -19,24 +19,37 @@ class SmallChicken extends MovableObject {
         this.loadImages(this.IMAGES_WALKING);
         this.x = x + Math.random() * 300;
         this.speed = 0.15 + Math.random() * 0.5;
-        this.animate();
+        this.animateWalking();
+        this.animateDeadImg();
+        this.animateWalkingImg();
     }
 
     /**
-     * renders the images in a certain speed after each other and sets the sound
+     * lets the smallchicken walk
      */
-    animate() {
+     animateWalking() {
         setInterval(() => {
             if (!this.dead && !this.openMenu && gameStarted) {
                 this.moveLeft();
             }
         }, 1000 / 60);
+    }
 
+    
+    animateDeadImg() {
         setInterval(() => {
             if (this.dead) {
                 this.loadImage(this.IMG_DEATH);
-            } else if(!this.openMenu) {
-                this.loadImage(this.IMG_DEATH);
+            }
+        }, 100);
+    }
+
+    /**
+     * renders the images in a certain speed after each other and sets the sound
+     */
+    animateWalkingImg() {
+        setInterval(() => {
+            if (!this.dead && !this.openMenu) {
                 this.playAnimation(this.IMAGES_WALKING);
                 if (this.isNear) {
                     if (soundOn()) {

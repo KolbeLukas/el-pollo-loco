@@ -15,7 +15,7 @@ class Character extends MovableObject {
         left: 20,
         right: 30
     };
-    IMAGES_IDEL = [
+    IMAGES_IDLE = [
         'img/2_character_pepe/1_idle/idle/I-1.png',
         'img/2_character_pepe/1_idle/idle/I-2.png',
         'img/2_character_pepe/1_idle/idle/I-3.png',
@@ -79,20 +79,29 @@ class Character extends MovableObject {
 
     constructor() {
         super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
-        this.loadImages(this.IMAGES_IDEL);
+        this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_LONGIDLE);
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
         this.applyGravity();
-        this.animate();
+        this.animateWalkingRight();
+        this.animateWalkingLeft();
+        this.animateJumping();
+        this.animateDeadImg();
+        this.animateHurtImg();
+        this.animateJumpingImg();
+        this.animateWalkingImg();
+        this.animateIdleImg();
+        this.animateLongidleImg();
     }
 
+    
     /**
-     * renders the images in a certain speed after each other and sets the sound
+     * gets the input for teh keyboard where to move and plays the sound
      */
-    animate() {
+    animateWalkingRight() {
         setInterval(() => {
             this.walking_sound.pause();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
@@ -104,7 +113,15 @@ class Character extends MovableObject {
                     this.walking_sound.play();
                 }
             }
+            this.world.camera_x = -this.x + 80;
+        }, 1000 / 60);
+    }
+
+
+    animateWalkingLeft() {
+        setInterval(() => {
             if (this.world.keyboard.LEFT && this.x > -100) {
+                this.walking_sound.pause();
                 this.moveLeft();
                 this.snoring_sound.pause();
                 this.time = new Date().getTime();
@@ -113,7 +130,15 @@ class Character extends MovableObject {
                     this.walking_sound.play();
                 }
             }
+            this.world.camera_x = -this.x + 80;
+        }, 1000 / 60);
+    }
+
+
+    animateJumping() {
+        setInterval(() => {
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
+                this.walking_sound.pause();
                 this.currentImage = 0;
                 this.jump();
                 this.snoring_sound.pause();
@@ -123,8 +148,12 @@ class Character extends MovableObject {
             }
             this.world.camera_x = -this.x + 80;
         }, 1000 / 60);
+    }
 
-
+    /**
+     * renders the images in a certain speed after each other and sets the sound
+     */
+    animateDeadImg() {
         setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
@@ -133,8 +162,10 @@ class Character extends MovableObject {
                 }
             }
         }, 1000 / 5);
+    }
 
 
+    animateHurtImg() {
         setInterval(() => {
             if (this.isHurt() && !this.isDead()) {
                 this.playAnimation(this.IMAGES_HURT);
@@ -143,30 +174,38 @@ class Character extends MovableObject {
                 }
             }
         }, 1000 / 3);
+    }
 
 
+    animateJumpingImg() {
         setInterval(() => {
             if (this.isAboveGround() && !this.isHurt()) {
                 this.playAnimation(this.IMAGES_JUMPING);
                 this.time = new Date().getTime();
             }
         }, 1000 / 5);
+    }
 
 
+    animateWalkingImg() {
         setInterval(() => {
             if (this.world.keyboard.RIGHT && !this.isAboveGround() && !this.isHurt() || this.world.keyboard.LEFT && !this.isAboveGround() && !this.isHurt()) {
                 this.playAnimation(this.IMAGES_WALKING);
             }
         }, 1000 / 12);
+    }
 
 
+    animateIdleImg() {
         setInterval(() => {
             if (this.idle(0.2) && !this.idle(3) && !this.isHurt() && !this.isDead()) {
-                this.playAnimation(this.IMAGES_IDEL)
+                this.playAnimation(this.IMAGES_IDLE)
             }
         }, 1000 / 6);
+    }
 
-
+    
+    animateLongidleImg() {
         setInterval(() => {
             if (this.idle(3) && !this.isHurt() && !this.isDead() && !this.openMenu) {
                 this.playAnimation(this.IMAGES_LONGIDLE);

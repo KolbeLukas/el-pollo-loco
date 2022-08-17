@@ -8,6 +8,7 @@ class Endboss extends MovableObject {
     speed = 1;
     attacke = false;
     openMenu = false;
+    i = 0;
     offset = {
         top: 80,
         bottom: 80,
@@ -63,14 +64,18 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_ATTACKE);
-        this.animate();
+        this.animateWalking();
+        this.animateDeadImg();
+        this.animateHurtImg();
+        this.animateAttackeImg();
+        this.animateAlertImg();
+        this.animateWalkingImg();
     }
 
     /**
      * renders the images in a certain speed after each other and sets the sound
      */
-    animate() {
-        let i = 0;
+    animateDeadImg() {
         setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
@@ -79,8 +84,10 @@ class Endboss extends MovableObject {
                 }
             }
         }, 1000 / 6);
+    }
 
-
+    
+    animateHurtImg() {
         setInterval(() => {
             if (this.isHurt() && !this.isDead()) {
                 this.playAnimation(this.IMAGES_HURT);
@@ -90,8 +97,10 @@ class Endboss extends MovableObject {
                 }
             }
         }, 1000 / 6);
+    }
 
 
+    animateAttackeImg() {
         setInterval(() => {
             if (this.attacke && !this.isDead()) {
                 this.playAnimation(this.IMAGES_ATTACKE);
@@ -100,26 +109,38 @@ class Endboss extends MovableObject {
                 }
             }
         }, 1000 / 8);
+    }
 
 
+    animateAlertImg() {
         setInterval(() => {
-            if (this.isNear && !this.attacke && !this.isHurt() && !this.isDead() && !this.openMenu) {
-                if (i < 8) {
-                    this.playAnimation(this.IMAGES_ALERT);
-                } else {
-                    this.playAnimation(this.IMAGES_WALKING);
-                    if (soundOn()) {
-                        this.standart_sound.play();
-                    }
-                }
-                i++;
+            if (this.isNear && !this.attacke && !this.isHurt() && !this.isDead() && !this.openMenu && this.i < 8) {
+                this.playAnimation(this.IMAGES_ALERT);
+                this.i++;
             }
         }, 1000 / 4);
+    }
 
 
+    animateWalkingImg() {
+        setInterval(() => {
+            if (this.isNear && !this.attacke && !this.isHurt() && !this.isDead() && !this.openMenu && this.i > 8) {
+                this.playAnimation(this.IMAGES_WALKING);
+                if (soundOn()) {
+                    this.standart_sound.play();
+                }
+                this.i++;
+            }
+        }, 1000 / 4);
+    }
+
+    /**
+     * lets the endboss walk after a certain time
+     */
+    animateWalking() {
         setInterval(() => {
             if (this.isNear && !this.attacke && !this.isDead() && !this.openMenu) {
-                if (i < 6) {
+                if (this.i < 7) {
                     return;
                 } else {
                     this.moveLeft();

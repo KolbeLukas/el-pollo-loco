@@ -366,8 +366,10 @@ class World {
     youLost() {
         if (this.character.isDead()) {
             this.addToMap(this.LostScreen);
-            this.character.dead_sound.muted = true;
             document.getElementById('restart').classList.remove('d-none');
+            setTimeout(() => {
+                this.character.dead_sound.muted = true;
+            }, 1100);
         }
     }
 

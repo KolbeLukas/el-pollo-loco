@@ -3,7 +3,11 @@ let world;
 let keyboard = new Keyboard();
 
 function init() {
-    document.getElementById('sound').checked = JSON.parse(localStorage.getItem('sound'));
+    if (localStorage.getItem('sound') == null) {
+        document.getElementById('sound').checked = true;
+    } else {
+        document.getElementById('sound').checked = JSON.parse(localStorage.getItem('sound'));
+    }
     document.getElementById('music').checked = JSON.parse(localStorage.getItem('music'));
 }
 

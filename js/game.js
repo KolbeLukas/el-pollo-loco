@@ -27,12 +27,12 @@ function initGame() {
 function openMenu() {
     if (document.getElementById('menu-overlay').classList.contains('d-none')) {
         document.getElementById('menu-overlay').classList.remove('d-none');
-        if(world) {
+        if (world) {
             world.keyboard.M = true;
         }
     } else {
         document.getElementById('menu-overlay').classList.add('d-none');
-        if(world) {
+        if (world) {
             world.keyboard.M = false;
         }
     }
@@ -44,7 +44,7 @@ function closeMenu() {
     world.keyboard.M = false;
 }
 
-function doNotCloseMenu(event){
+function doNotCloseMenu(event) {
     event.stopPropagation();
 }
 

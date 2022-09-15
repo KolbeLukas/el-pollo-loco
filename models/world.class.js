@@ -14,7 +14,7 @@ class World {
     death_enemies = [];
     endboss = this.level.enemies[0];
     time;
-    music = new Audio('audio/music.wav');
+    music = new Audio('audio/music.mp3');
     GameOverScreen = new Endscreen('img/9_intro_outro_screens/game_over/game over!.png', this.character.x - 80)
     LostScreen = new Endscreen('img/9_intro_outro_screens/game_over/oh no you lost!.png', this.character.x - 80);
 

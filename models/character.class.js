@@ -69,13 +69,13 @@ class Character extends MovableObject {
         'img/2_character_pepe/5_dead/D-57.png'
     ];
     world;
-    snoring_sound = new Audio('audio/snoring.wav');
-    walking_sound = new Audio('audio/walking.wav');
-    jump_sound = new Audio('audio/jump.wav');
-    no_bottle_sound = new Audio('audio/nope.wav');
-    throwing_sound = new Audio('audio/throwing.wav');
-    getting_hit_sound = new Audio('audio/character-hit.wav');
-    dead_sound = new Audio('audio/character-dead.wav');
+    snoring_sound = new Audio('audio/snoring.mp3');
+    walking_sound = new Audio('audio/walking.mp3');
+    jump_sound = new Audio('audio/jump.mp3');
+    no_bottle_sound = new Audio('audio/nope.mp3');
+    throwing_sound = new Audio('audio/throwing.mp3');
+    getting_hit_sound = new Audio('audio/character-hit.mp3');
+    dead_sound = new Audio('audio/character-dead.mp3');
 
     constructor() {
         super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
@@ -97,7 +97,7 @@ class Character extends MovableObject {
         this.animateLongidleImg();
     }
 
-    
+
     /**
      * gets the input for teh keyboard where to move and plays the sound
      */
@@ -204,7 +204,7 @@ class Character extends MovableObject {
         }, 1000 / 6);
     }
 
-    
+
     animateLongidleImg() {
         setInterval(() => {
             if (this.idle(3) && !this.isHurt() && !this.isDead() && !this.openMenu) {

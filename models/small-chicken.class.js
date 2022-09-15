@@ -11,8 +11,8 @@ class SmallChicken extends MovableObject {
         'img/3_enemies_chicken/chicken_small/1_walk/3_w.png'
     ];
     IMG_DEATH = 'img/3_enemies_chicken/chicken_small/2_dead/dead.png';
-    standart_sound = new Audio('audio/chicken.wav');
-    hit_sound = new Audio('audio/hit_chicken.wav');
+    standart_sound = new Audio('audio/chicken.mp3');
+    hit_sound = new Audio('audio/hit_chicken.mp3');
 
     constructor(x) {
         super().loadImage(this.IMAGES_WALKING[0]);
@@ -27,7 +27,7 @@ class SmallChicken extends MovableObject {
     /**
      * lets the smallchicken walk
      */
-     animateWalking() {
+    animateWalking() {
         setInterval(() => {
             if (!this.dead && !this.openMenu && gameStarted) {
                 this.moveLeft();
@@ -35,7 +35,7 @@ class SmallChicken extends MovableObject {
         }, 1000 / 60);
     }
 
-    
+
     animateDeadImg() {
         setInterval(() => {
             if (this.dead) {

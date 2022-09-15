@@ -52,10 +52,10 @@ class Endboss extends MovableObject {
         'img/4_enemie_boss_chicken/5_dead/G25.png',
         'img/4_enemie_boss_chicken/5_dead/G26.png'
     ];
-    attack_sound = new Audio('audio/boss-attack.wav');
-    standart_sound = new Audio('audio/chicken.wav');
-    hit_sound = new Audio('audio/hit_chicken.wav');
-    dead_sound = new Audio('audio/boss-dead.wav');
+    attack_sound = new Audio('audio/boss-attack.mp3');
+    standart_sound = new Audio('audio/chicken.mp3');
+    hit_sound = new Audio('audio/hit_chicken.mp3');
+    dead_sound = new Audio('audio/boss-dead.mp3');
 
     constructor() {
         super().loadImage(this.IMAGES_ALERT[0]);
@@ -86,7 +86,7 @@ class Endboss extends MovableObject {
         }, 1000 / 6);
     }
 
-    
+
     animateHurtImg() {
         setInterval(() => {
             if (this.isHurt() && !this.isDead()) {

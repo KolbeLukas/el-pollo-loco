@@ -9,6 +9,14 @@ function init() {
         document.getElementById('sound').checked = JSON.parse(localStorage.getItem('sound'));
     }
     document.getElementById('music').checked = JSON.parse(localStorage.getItem('music'));
+    showStartButton();
+}
+
+
+function showStartButton() {
+    setTimeout(() => {
+        document.getElementById('start-game').classList.remove('d-none');
+    }, 1500);
 }
 
 

@@ -1,4 +1,5 @@
 let gameStarted = false;
+let gameMusic = new Audio('audio/music.mp3');
 let level_1 = new Level(
     [
         new Endboss(),

@@ -2,14 +2,14 @@ let gameStarted = false;
 let level_1 = new Level(
     [
         new Endboss(),
-        new Chicken(500),
-        new Chicken(1000),
-        new Chicken(1500),
-        new Chicken(2000),
-        new SmallChicken(300),
-        new SmallChicken(800),
-        new SmallChicken(1300),
-        new SmallChicken(1800)
+        new Chicken(700),
+        new Chicken(1200),
+        new Chicken(1700),
+        new Chicken(2200),
+        new SmallChicken(500),
+        new SmallChicken(1000),
+        new SmallChicken(1500),
+        new SmallChicken(2000)
     ],
     [
         new Cloud(0),

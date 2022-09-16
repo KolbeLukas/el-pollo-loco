@@ -109,9 +109,7 @@ class Character extends MovableObject {
                 this.snoring_sound.pause();
                 this.time = new Date().getTime();
                 this.otherDirection = false;
-                if (!this.isAboveGround() && soundOn()) {
-                    this.walking_sound.play();
-                }
+                this.walkingSound();
             }
             this.world.camera_x = -this.x + 80;
         }, 1000 / 60);
@@ -126,12 +124,16 @@ class Character extends MovableObject {
                 this.snoring_sound.pause();
                 this.time = new Date().getTime();
                 this.otherDirection = true;
-                if (!this.isAboveGround() && soundOn()) {
-                    this.walking_sound.play();
-                }
+                this.walkingSound();
             }
             this.world.camera_x = -this.x + 80;
         }, 1000 / 60);
+    }
+
+    walkingSound() {
+        if (!this.isAboveGround() && soundOn()) {
+            this.walking_sound.play();
+        }
     }
 
 

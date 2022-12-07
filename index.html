@@ -46,10 +46,11 @@
         <div onclick="closeMenu()" id="menu-overlay" class="menu-overlay d-none">
             <div onclick="doNotCloseMenu(event)" class="menu">
                 <div class="container">
-                    <div id="settings" class="setting-box">
+                    <div id="settings" class="control">
                         <div class="menu-head">
                             <h2 class="active">Settings</h2>
                             <h2 onclick="openNextSettingPage('control', 'settings')">Control</h2>
+                            <h2 onclick="openNextSettingPage('legalNotice', 'settings')">Legal Notice</h2>
                         </div>
                         <div class="settings">
                             <span class="setting-name">Sound</span>
@@ -73,10 +74,12 @@
                             </label>
                         </div>
                     </div>
+
                     <div id="control" class="control d-none">
                         <div class="menu-head">
                             <h2 onclick="openNextSettingPage('settings', 'control')">Settings</h2>
                             <h2 class="active">Control</h2>
+                            <h2 onclick="openNextSettingPage('legalNotice', 'control')">Legal Notice</h2>
                         </div>
                         <div class="settings">
                             <span class="setting-name">move left:</span>
@@ -93,6 +96,28 @@
                         <div class="settings">
                             <span class="setting-name">throw:</span>
                             <span>d</span>
+                        </div>
+                    </div>
+
+                    <div id="legalNotice" class="control d-none">
+                        <div class="menu-head">
+                            <h2 onclick="openNextSettingPage('settings', 'legalNotice')">Settings</h2>
+                            <h2 onclick="openNextSettingPage('control', 'legalNotice')">Control</h2>
+                            <h2 class="active">Legal Notice</h2>
+                        </div>
+                        <div class="legal-notice">
+                            <h2>Angaben gemäß Par. 5 TMG:</h2>
+                            <p>Lukas Kolbe</p>
+                            <h3>Postanschrift:</h3>
+                            <p>Gutenbergstraße 106<br>50823 Köln<br></p>
+                            <h3>Kontakt:</h3>
+                            <p>Telefon: +49 15753310130 <br>
+                                E-Mail: <a href="mailto: contact@lukas-kolbe-dev.de">contact@lukas-kolbe-dev.de</a>
+                            </p>
+                            <p><em>Das Impressum wurde mithilfe der <a href="https://www.activemind.de"
+                                        target="_blank">activeMind AG</a>
+                                    erstellt.</em>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -113,7 +138,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </body>
 
